@@ -16,23 +16,33 @@ const regions: Region[] = [
   {
     id: "lake-norman",
     name: "Lake Norman",
-    cities: ["Mooresville", "Cornelius", "Davidson", "Huntersville", "Statesville", "Denver"],
-    mapQuery: "Mooresville,+NC",
+    cities: [
+      "Mooresville", "Cornelius", "Davidson", "Huntersville", "Denver",
+      "Sherrills Ford", "Troutman", "Statesville", "Stanley", "Terrell",
+    ],
+    mapQuery: "Lake+Norman,+NC",
     href: "/service-areas/lake-norman",
     phone: "(877) 274-1475",
   },
   {
     id: "triad",
     name: "Triad",
-    cities: ["Greensboro", "Winston-Salem", "High Point", "Kernersville", "Burlington"],
-    mapQuery: "Greensboro,+NC",
+    cities: [
+      "Greensboro", "Winston-Salem", "High Point", "Kernersville", "Burlington",
+      "Clemmons", "Thomasville", "Jamestown", "Lexington", "Summerfield",
+      "Archdale", "Lewisville",
+    ],
+    mapQuery: "Greensboro,+High+Point,+Winston-Salem,+NC",
     href: "/service-areas/triad",
     phone: "(877) 274-1475",
   },
   {
     id: "hickory",
     name: "Hickory",
-    cities: ["Hickory", "Morganton", "Lenoir", "Newton"],
+    cities: [
+      "Hickory", "Morganton", "Lenoir", "Newton", "Conover",
+      "Valdese", "Granite Falls", "Long View", "Hudson",
+    ],
     mapQuery: "Hickory,+NC",
     href: "/service-areas/hickory",
     phone: "(877) 274-1475",
@@ -40,7 +50,10 @@ const regions: Region[] = [
   {
     id: "boone",
     name: "Boone / High Country",
-    cities: ["Boone", "Blowing Rock", "Banner Elk"],
+    cities: [
+      "Boone", "Blowing Rock", "Banner Elk", "Fleetwood",
+      "Wilkesboro", "North Wilkesboro",
+    ],
     mapQuery: "Boone,+NC",
     href: "/service-areas/boone",
     phone: "(877) 274-1475",
@@ -131,7 +144,7 @@ export default function ServiceAreaMap() {
                 style={{ border: 0 }}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Christmas+light+installation+near+${activeRegion.mapQuery}&zoom=11`}
+                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${activeRegion.mapQuery}&zoom=11`}
                 allowFullScreen
               />
             </div>

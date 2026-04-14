@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const areas = [
   {
     name: "Lake Norman",
-    cities: ["Mooresville", "Cornelius", "Davidson", "Huntersville", "Statesville", "Denver"],
+    cities: ["Mooresville", "Cornelius", "Davidson", "Huntersville", "Denver", "Sherrills Ford", "Troutman", "Statesville"],
     description:
       "From lakefront estates to charming neighborhoods, we bring holiday magic to the Lake Norman area.",
     href: "/service-areas/lake-norman",
@@ -22,7 +22,7 @@ const areas = [
   },
   {
     name: "Triad",
-    cities: ["Greensboro", "Winston-Salem", "High Point", "Kernersville", "Burlington"],
+    cities: ["Greensboro", "Winston-Salem", "High Point", "Kernersville", "Burlington", "Clemmons", "Thomasville", "Jamestown"],
     description:
       "Our home territory since 1959. Professional holiday lighting for the Triad's finest homes and businesses.",
     href: "/service-areas/triad",
@@ -30,7 +30,7 @@ const areas = [
   },
   {
     name: "Hickory",
-    cities: ["Hickory", "Morganton", "Lenoir", "Newton"],
+    cities: ["Hickory", "Morganton", "Lenoir", "Newton", "Conover", "Valdese", "Granite Falls"],
     description:
       "From downtown storefronts to foothill estates — we light up the Catawba Valley.",
     href: "/service-areas/hickory",
@@ -38,7 +38,7 @@ const areas = [
   },
   {
     name: "Boone / High Country",
-    cities: ["Boone", "Blowing Rock", "Banner Elk"],
+    cities: ["Boone", "Blowing Rock", "Banner Elk", "Fleetwood", "Wilkesboro", "North Wilkesboro"],
     description:
       "Holiday lights that shine bright in the High Country. Rated for mountain winds, steep rooflines, and elevation changes.",
     href: "/service-areas/boone",
