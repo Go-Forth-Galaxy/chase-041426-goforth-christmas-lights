@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 
 /* ------------------------------------------------------------------ */
 /* Types                                                               */
@@ -66,49 +66,17 @@ function calculateEstimate(data: FormData): { low: number; high: number } {
   let low = 0;
   let high = 0;
 
-  // Roofline
   if (data.roofline) {
     low += data.rooflineLength * 5;
     high += data.rooflineLength * 8;
   }
+  if (data.frontWindows) { low += 200; high += 400; }
+  if (data.frontDoor) { low += 100; high += 200; }
+  if (data.trees) { low += data.treeCount * 150; high += data.treeCount * 300; }
+  if (data.bushes) { low += 150; high += 300; }
+  if (data.walkway) { low += 200; high += 400; }
+  if (data.wreaths) { low += data.wreathCount * 50; high += data.wreathCount * 50; }
 
-  // Windows
-  if (data.frontWindows) {
-    low += 200;
-    high += 400;
-  }
-
-  // Front door
-  if (data.frontDoor) {
-    low += 100;
-    high += 200;
-  }
-
-  // Trees
-  if (data.trees) {
-    low += data.treeCount * 150;
-    high += data.treeCount * 300;
-  }
-
-  // Bushes
-  if (data.bushes) {
-    low += 150;
-    high += 300;
-  }
-
-  // Walkway
-  if (data.walkway) {
-    low += 200;
-    high += 400;
-  }
-
-  // Wreaths
-  if (data.wreaths) {
-    low += data.wreathCount * 50;
-    high += data.wreathCount * 50;
-  }
-
-  // Design level multiplier
   if (data.designLevel === "full") {
     low = Math.round(low * 1.15);
     high = Math.round(high * 1.15);
@@ -121,28 +89,109 @@ function calculateEstimate(data: FormData): { low: number; high: number } {
 }
 
 /* ------------------------------------------------------------------ */
+/* Checkmark icon                                                      */
+/* ------------------------------------------------------------------ */
+
+function CheckIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Confetti dots                                                       */
+/* ------------------------------------------------------------------ */
+
+function ConfettiDots() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      {Array.from({ length: 30 }, (_, i) => {
+        const colors = ["bg-gf-gold", "bg-gf-green", "bg-gf-gold-light", "bg-gf-green-light", "bg-gf-red"];
+        const color = colors[i % colors.length];
+        const size = 4 + Math.random() * 6;
+        const left = Math.random() * 100;
+        const delay = Math.random() * 2;
+        const duration = 2 + Math.random() * 3;
+        return (
+          <span
+            key={i}
+            className={`absolute rounded-full ${color} opacity-0`}
+            style={{
+              width: size,
+              height: size,
+              left: `${left}%`,
+              top: "-10px",
+              animation: `confettiFall ${duration}s ${delay}s ease-out forwards`,
+            }}
+          />
+        );
+      })}
+      <style>{`
+        @keyframes confettiFall {
+          0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+          100% { opacity: 0; transform: translateY(400px) rotate(720deg); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* Sub-components                                                      */
 /* ------------------------------------------------------------------ */
 
+const stepLabels = ["Home", "Areas", "Style", "Estimate"];
+
 function ProgressBar({ step }: { step: number }) {
   return (
-    <div className="mb-8" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={4} aria-label={`Step ${step} of 4`}>
-      <div className="mb-2 flex justify-between text-sm font-medium text-gf-gray">
-        <span>Step {step} of 4</span>
-        <span>{Math.round((step / 4) * 100)}% complete</span>
-      </div>
-      <div className="h-2 w-full overflow-hidden rounded-full bg-gf-gray-light">
-        <div
-          className="h-full rounded-full bg-gradient-to-r from-gf-green to-gf-green-light transition-all duration-500 ease-out"
-          style={{ width: `${(step / 4) * 100}%` }}
-        />
+    <div className="mb-10" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={4} aria-label={`Step ${step} of 4`}>
+      <div className="flex items-center justify-between">
+        {stepLabels.map((label, i) => {
+          const stepNum = i + 1;
+          const completed = step > stepNum;
+          const current = step === stepNum;
+          return (
+            <div key={label} className="flex flex-1 items-center">
+              <div className="flex flex-col items-center">
+                <div
+                  className={`flex h-10 w-10 items-center justify-center rounded-full border-2 text-sm font-bold transition-all duration-500 ${
+                    completed
+                      ? "border-gf-gold bg-gf-gold text-white shadow-md shadow-gf-gold/30"
+                      : current
+                      ? "border-gf-green bg-gf-green text-white shadow-md shadow-gf-green/30"
+                      : "border-gray-300 bg-white text-gf-gray"
+                  }`}
+                >
+                  {completed ? <CheckIcon className="h-5 w-5" /> : stepNum}
+                </div>
+                <span
+                  className={`mt-2 text-xs font-semibold transition-colors duration-300 ${
+                    completed ? "text-gf-gold" : current ? "text-gf-green" : "text-gf-gray"
+                  }`}
+                >
+                  {label}
+                </span>
+              </div>
+              {i < stepLabels.length - 1 && (
+                <div className="mx-2 h-0.5 flex-1 rounded-full bg-gray-200">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-gf-gold to-gf-gold-light transition-all duration-700 ease-out"
+                    style={{ width: completed ? "100%" : current ? "50%" : "0%" }}
+                  />
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* Step 1 — Home Details                                               */
+/* Step 1 -- Home Details                                              */
 /* ------------------------------------------------------------------ */
 
 function Step1({
@@ -152,6 +201,17 @@ function Step1({
   data: FormData;
   onChange: (patch: Partial<FormData>) => void;
 }) {
+  const sliderRef = useRef<HTMLInputElement>(null);
+  const [thumbPos, setThumbPos] = useState(0);
+
+  useEffect(() => {
+    if (sliderRef.current) {
+      const pct = (data.rooflineLength - 50) / (300 - 50);
+      const width = sliderRef.current.offsetWidth;
+      setThumbPos(pct * (width - 20) + 10);
+    }
+  }, [data.rooflineLength]);
+
   const homeTypes: { value: HomeType; label: string; desc: string; icon: string }[] = [
     { value: "single", label: "Single-Story Ranch", desc: "One level, standard roofline", icon: "🏠" },
     { value: "two-story", label: "Two-Story", desc: "Two levels, taller roofline", icon: "🏡" },
@@ -164,15 +224,15 @@ function Step1({
 
       {/* Home type */}
       <div>
-        <p className="mb-3 font-semibold text-gf-charcoal">Home Type</p>
+        <p className="mb-4 font-semibold text-gf-charcoal">Home Type</p>
         <div className="grid gap-4 sm:grid-cols-3">
           {homeTypes.map((t) => (
             <label
               key={t.value}
-              className={`flex cursor-pointer flex-col items-center gap-2 rounded-xl border-2 p-6 text-center transition-all hover:shadow-md ${
+              className={`group relative flex cursor-pointer flex-col items-center gap-3 rounded-2xl border-2 p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 ${
                 data.homeType === t.value
-                  ? "border-gf-green bg-gf-green/5 shadow-md"
-                  : "border-gf-gray-light bg-white"
+                  ? "border-gf-gold bg-gradient-to-b from-gf-warm-white to-white shadow-lg shadow-gf-gold/10"
+                  : "border-gray-200 bg-white hover:border-gf-gold/40"
               }`}
             >
               <input
@@ -184,8 +244,13 @@ function Step1({
                 className="sr-only"
                 aria-label={t.label}
               />
-              <span className="text-3xl" aria-hidden="true">{t.icon}</span>
-              <span className="font-semibold text-gf-charcoal">{t.label}</span>
+              {data.homeType === t.value && (
+                <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-gf-gold text-white shadow-md">
+                  <CheckIcon className="h-3.5 w-3.5" />
+                </span>
+              )}
+              <span className="text-4xl transition-transform duration-300 group-hover:scale-110" aria-hidden="true">{t.icon}</span>
+              <span className="font-bold text-gf-charcoal">{t.label}</span>
               <span className="text-sm text-gf-gray">{t.desc}</span>
             </label>
           ))}
@@ -194,27 +259,74 @@ function Step1({
 
       {/* Roofline slider */}
       <div>
-        <label htmlFor="roofline-length" className="mb-1 block font-semibold text-gf-charcoal">
-          Estimated Roofline Length: <span className="text-gf-green">{data.rooflineLength} ft</span>
+        <label htmlFor="roofline-length" className="mb-3 block font-semibold text-gf-charcoal">
+          Estimated Roofline Length
         </label>
-        <input
-          id="roofline-length"
-          type="range"
-          min={50}
-          max={300}
-          step={10}
-          value={data.rooflineLength}
-          onChange={(e) => onChange({ rooflineLength: Number(e.target.value) })}
-          className="w-full accent-gf-green"
-          aria-valuemin={50}
-          aria-valuemax={300}
-          aria-valuenow={data.rooflineLength}
-        />
-        <div className="mt-1 flex justify-between text-xs text-gf-gray">
-          <span>50 ft</span>
-          <span>300 ft</span>
+        <div className="relative mt-6">
+          {/* Floating label that follows the thumb */}
+          <div
+            className="absolute -top-8 flex -translate-x-1/2 flex-col items-center transition-all duration-150"
+            style={{ left: thumbPos }}
+          >
+            <span className="rounded-md bg-gf-gold px-2.5 py-1 text-sm font-bold text-white shadow-md">
+              {data.rooflineLength} ft
+            </span>
+            <span className="h-0 w-0 border-l-[5px] border-r-[5px] border-t-[5px] border-l-transparent border-r-transparent border-t-gf-gold" />
+          </div>
+          <input
+            ref={sliderRef}
+            id="roofline-length"
+            type="range"
+            min={50}
+            max={300}
+            step={10}
+            value={data.rooflineLength}
+            onChange={(e) => onChange({ rooflineLength: Number(e.target.value) })}
+            className="slider-custom w-full"
+            aria-valuemin={50}
+            aria-valuemax={300}
+            aria-valuenow={data.rooflineLength}
+          />
+          <style>{`
+            .slider-custom {
+              -webkit-appearance: none;
+              appearance: none;
+              height: 8px;
+              border-radius: 9999px;
+              background: linear-gradient(to right, var(--color-gf-green), var(--color-gf-green-light));
+              outline: none;
+            }
+            .slider-custom::-webkit-slider-thumb {
+              -webkit-appearance: none;
+              appearance: none;
+              width: 24px;
+              height: 24px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, var(--color-gf-gold), var(--color-gf-gold-light));
+              cursor: pointer;
+              box-shadow: 0 2px 8px rgba(212, 168, 67, 0.4);
+              border: 3px solid white;
+              transition: transform 0.15s;
+            }
+            .slider-custom::-webkit-slider-thumb:hover {
+              transform: scale(1.15);
+            }
+            .slider-custom::-moz-range-thumb {
+              width: 24px;
+              height: 24px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, var(--color-gf-gold), var(--color-gf-gold-light));
+              cursor: pointer;
+              box-shadow: 0 2px 8px rgba(212, 168, 67, 0.4);
+              border: 3px solid white;
+            }
+          `}</style>
+          <div className="mt-2 flex justify-between text-xs font-medium text-gf-gray">
+            <span>50 ft</span>
+            <span>300 ft</span>
+          </div>
         </div>
-        <p className="mt-2 text-sm text-gf-gray">
+        <p className="mt-3 text-sm text-gf-gray">
           Not sure? Most single-story homes are 100-150ft, two-story homes are 150-250ft.
         </p>
       </div>
@@ -223,7 +335,7 @@ function Step1({
 }
 
 /* ------------------------------------------------------------------ */
-/* Step 2 — What to Light                                              */
+/* Step 2 -- What to Light                                             */
 /* ------------------------------------------------------------------ */
 
 function Step2({
@@ -233,12 +345,12 @@ function Step2({
   data: FormData;
   onChange: (patch: Partial<FormData>) => void;
 }) {
-  const checkboxes: { key: keyof FormData; label: string }[] = [
-    { key: "roofline", label: "Roofline" },
-    { key: "frontWindows", label: "Front Windows" },
-    { key: "frontDoor", label: "Front Door / Entry" },
-    { key: "bushes", label: "Bushes / Shrubs" },
-    { key: "walkway", label: "Walkway / Pathway" },
+  const checkboxes: { key: keyof FormData; label: string; icon: string }[] = [
+    { key: "roofline", label: "Roofline", icon: "🏠" },
+    { key: "frontWindows", label: "Front Windows", icon: "🪟" },
+    { key: "frontDoor", label: "Front Door / Entry", icon: "🚪" },
+    { key: "bushes", label: "Bushes / Shrubs", icon: "🌿" },
+    { key: "walkway", label: "Walkway / Pathway", icon: "🛤" },
   ];
 
   return (
@@ -250,40 +362,56 @@ function Step2({
         {checkboxes.map((cb) => (
           <label
             key={cb.key}
-            className={`flex cursor-pointer items-center gap-3 rounded-lg border-2 p-4 transition-all hover:shadow-sm ${
-              data[cb.key] ? "border-gf-green bg-gf-green/5" : "border-gf-gray-light bg-white"
+            className={`group relative flex cursor-pointer items-center gap-3 rounded-xl border-2 p-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 ${
+              data[cb.key]
+                ? "border-gf-gold bg-gradient-to-r from-gf-warm-white to-white shadow-md"
+                : "border-gray-200 bg-white hover:border-gf-gold/40"
             }`}
           >
+            {data[cb.key] && (
+              <span className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-gf-gold text-white shadow-sm">
+                <CheckIcon className="h-3 w-3" />
+              </span>
+            )}
             <input
               type="checkbox"
               checked={data[cb.key] as boolean}
               onChange={(e) => onChange({ [cb.key]: e.target.checked })}
-              className="h-5 w-5 rounded border-gf-gray accent-gf-green"
+              className="sr-only"
               aria-label={cb.label}
             />
-            <span className="font-medium text-gf-charcoal">{cb.label}</span>
+            <span className="text-xl transition-transform duration-200 group-hover:scale-110" aria-hidden="true">{cb.icon}</span>
+            <span className="font-semibold text-gf-charcoal">{cb.label}</span>
           </label>
         ))}
 
         {/* Trees with count */}
         <label
-          className={`flex cursor-pointer items-center gap-3 rounded-lg border-2 p-4 transition-all hover:shadow-sm ${
-            data.trees ? "border-gf-green bg-gf-green/5" : "border-gf-gray-light bg-white"
+          className={`group relative flex cursor-pointer items-center gap-3 rounded-xl border-2 p-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 ${
+            data.trees
+              ? "border-gf-gold bg-gradient-to-r from-gf-warm-white to-white shadow-md"
+              : "border-gray-200 bg-white hover:border-gf-gold/40"
           }`}
         >
+          {data.trees && (
+            <span className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-gf-gold text-white shadow-sm">
+              <CheckIcon className="h-3 w-3" />
+            </span>
+          )}
           <input
             type="checkbox"
             checked={data.trees}
             onChange={(e) => onChange({ trees: e.target.checked })}
-            className="h-5 w-5 rounded border-gf-gray accent-gf-green"
+            className="sr-only"
             aria-label="Trees"
           />
-          <span className="font-medium text-gf-charcoal">Trees</span>
+          <span className="text-xl transition-transform duration-200 group-hover:scale-110" aria-hidden="true">🌲</span>
+          <span className="font-semibold text-gf-charcoal">Trees</span>
           {data.trees && (
             <select
               value={data.treeCount}
               onChange={(e) => onChange({ treeCount: Number(e.target.value) })}
-              className="ml-auto rounded border border-gf-gray-light px-2 py-1 text-sm"
+              className="ml-auto rounded-lg border border-gf-gold/30 bg-white px-2 py-1 text-sm font-medium text-gf-charcoal focus:border-gf-gold focus:ring-1 focus:ring-gf-gold/20 focus:outline-none"
               aria-label="Number of trees"
             >
               {[1, 2, 3, 4, 5].map((n) => (
@@ -295,23 +423,31 @@ function Step2({
 
         {/* Wreaths with count */}
         <label
-          className={`flex cursor-pointer items-center gap-3 rounded-lg border-2 p-4 transition-all hover:shadow-sm ${
-            data.wreaths ? "border-gf-green bg-gf-green/5" : "border-gf-gray-light bg-white"
+          className={`group relative flex cursor-pointer items-center gap-3 rounded-xl border-2 p-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 ${
+            data.wreaths
+              ? "border-gf-gold bg-gradient-to-r from-gf-warm-white to-white shadow-md"
+              : "border-gray-200 bg-white hover:border-gf-gold/40"
           }`}
         >
+          {data.wreaths && (
+            <span className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-gf-gold text-white shadow-sm">
+              <CheckIcon className="h-3 w-3" />
+            </span>
+          )}
           <input
             type="checkbox"
             checked={data.wreaths}
             onChange={(e) => onChange({ wreaths: e.target.checked })}
-            className="h-5 w-5 rounded border-gf-gray accent-gf-green"
+            className="sr-only"
             aria-label="Wreaths"
           />
-          <span className="font-medium text-gf-charcoal">Wreaths</span>
+          <span className="text-xl transition-transform duration-200 group-hover:scale-110" aria-hidden="true">🎄</span>
+          <span className="font-semibold text-gf-charcoal">Wreaths</span>
           {data.wreaths && (
             <select
               value={data.wreathCount}
               onChange={(e) => onChange({ wreathCount: Number(e.target.value) })}
-              className="ml-auto rounded border border-gf-gray-light px-2 py-1 text-sm"
+              className="ml-auto rounded-lg border border-gf-gold/30 bg-white px-2 py-1 text-sm font-medium text-gf-charcoal focus:border-gf-gold focus:ring-1 focus:ring-gf-gold/20 focus:outline-none"
               aria-label="Number of wreaths"
             >
               {[1, 2, 3, 4, 5].map((n) => (
@@ -326,7 +462,7 @@ function Step2({
 }
 
 /* ------------------------------------------------------------------ */
-/* Step 3 — Your Style                                                 */
+/* Step 3 -- Your Style                                                */
 /* ------------------------------------------------------------------ */
 
 function Step3({
@@ -343,10 +479,10 @@ function Step3({
     { value: "red-green", label: "Red & Green", preview: "bg-gradient-to-r from-red-600 to-green-600" },
   ];
 
-  const designs: { value: DesignLevel; label: string; desc: string }[] = [
-    { value: "simple", label: "Simple & Clean", desc: "Classic roofline lights with a polished, understated look." },
-    { value: "full", label: "Full & Festive", desc: "More coverage, added accents, and a cheerful holiday feel. (+15%)" },
-    { value: "showstopper", label: "Showstopper", desc: "Go all out — maximum impact, maximum wow factor. (+30%)" },
+  const designs: { value: DesignLevel; label: string; desc: string; icon: string }[] = [
+    { value: "simple", label: "Simple & Clean", desc: "Classic roofline lights with a polished, understated look.", icon: "✨" },
+    { value: "full", label: "Full & Festive", desc: "More coverage, added accents, and a cheerful holiday feel. (+15%)", icon: "🎄" },
+    { value: "showstopper", label: "Showstopper", desc: "Go all out -- maximum impact, maximum wow factor. (+30%)", icon: "🌟" },
   ];
 
   return (
@@ -355,15 +491,15 @@ function Step3({
 
       {/* Light color */}
       <div>
-        <p className="mb-3 font-semibold text-gf-charcoal">Light Color</p>
+        <p className="mb-4 font-semibold text-gf-charcoal">Light Color</p>
         <div className="grid gap-4 sm:grid-cols-2">
           {colors.map((c) => (
             <label
               key={c.value}
-              className={`flex cursor-pointer items-center gap-3 rounded-xl border-2 p-4 transition-all hover:shadow-md ${
+              className={`group relative flex cursor-pointer items-center gap-4 rounded-2xl border-2 p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 ${
                 data.lightColor === c.value
-                  ? "border-gf-green bg-gf-green/5 shadow-md"
-                  : "border-gf-gray-light bg-white"
+                  ? "border-gf-gold bg-gradient-to-r from-gf-warm-white to-white shadow-lg shadow-gf-gold/10"
+                  : "border-gray-200 bg-white hover:border-gf-gold/40"
               }`}
             >
               <input
@@ -375,8 +511,13 @@ function Step3({
                 className="sr-only"
                 aria-label={c.label}
               />
-              <span className={`h-8 w-8 shrink-0 rounded-full border border-gray-300 ${c.preview}`} aria-hidden="true" />
-              <span className="font-medium text-gf-charcoal">{c.label}</span>
+              {data.lightColor === c.value && (
+                <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-gf-gold text-white shadow-md">
+                  <CheckIcon className="h-3.5 w-3.5" />
+                </span>
+              )}
+              <span className={`h-10 w-10 shrink-0 rounded-full border-2 border-white shadow-md ${c.preview}`} aria-hidden="true" />
+              <span className="font-semibold text-gf-charcoal">{c.label}</span>
             </label>
           ))}
         </div>
@@ -384,15 +525,15 @@ function Step3({
 
       {/* Design level */}
       <div>
-        <p className="mb-3 font-semibold text-gf-charcoal">Design Level</p>
+        <p className="mb-4 font-semibold text-gf-charcoal">Design Level</p>
         <div className="grid gap-4 sm:grid-cols-3">
           {designs.map((d) => (
             <label
               key={d.value}
-              className={`flex cursor-pointer flex-col gap-2 rounded-xl border-2 p-5 transition-all hover:shadow-md ${
+              className={`group relative flex cursor-pointer flex-col items-center gap-3 rounded-2xl border-2 p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 ${
                 data.designLevel === d.value
-                  ? "border-gf-green bg-gf-green/5 shadow-md"
-                  : "border-gf-gray-light bg-white"
+                  ? "border-gf-gold bg-gradient-to-b from-gf-warm-white to-white shadow-lg shadow-gf-gold/10"
+                  : "border-gray-200 bg-white hover:border-gf-gold/40"
               }`}
             >
               <input
@@ -404,6 +545,12 @@ function Step3({
                 className="sr-only"
                 aria-label={d.label}
               />
+              {data.designLevel === d.value && (
+                <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-gf-gold text-white shadow-md">
+                  <CheckIcon className="h-3.5 w-3.5" />
+                </span>
+              )}
+              <span className="text-3xl transition-transform duration-300 group-hover:scale-110" aria-hidden="true">{d.icon}</span>
               <span className="text-lg font-bold text-gf-charcoal">{d.label}</span>
               <span className="text-sm text-gf-gray">{d.desc}</span>
             </label>
@@ -415,7 +562,7 @@ function Step3({
 }
 
 /* ------------------------------------------------------------------ */
-/* Step 4 — Estimate & Contact                                         */
+/* Step 4 -- Estimate & Contact                                        */
 /* ------------------------------------------------------------------ */
 
 function Step4({
@@ -431,6 +578,13 @@ function Step4({
   onSubmit: () => void;
   submitting: boolean;
 }) {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setVisible(true), 100);
+    return () => clearTimeout(t);
+  }, []);
+
   const included = [
     "Commercial-grade LED lights",
     "Professional installation",
@@ -443,36 +597,57 @@ function Step4({
       <h3 className="text-2xl font-bold text-gf-charcoal">Your Estimate</h3>
 
       {/* Price card */}
-      <div className="rounded-2xl bg-gradient-to-br from-gf-green to-gf-green-dark p-8 text-center text-white shadow-lg">
-        <p className="text-sm font-medium uppercase tracking-wide text-gf-cream/70">Estimated Price Range</p>
-        <p className="mt-2 text-4xl font-bold sm:text-5xl">
-          ${estimate.low.toLocaleString()} &ndash; ${estimate.high.toLocaleString()}
+      <div
+        className={`relative overflow-hidden rounded-2xl border-2 border-gf-gold/30 bg-gradient-to-br from-gf-green via-gf-green to-gf-green-dark p-10 text-center text-white shadow-xl transition-all duration-700 ${
+          visible ? "translate-y-0 opacity-100 scale-100" : "translate-y-4 opacity-0 scale-95"
+        }`}
+      >
+        {/* Decorative shimmer */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent" style={{ animation: "shimmer 3s ease-in-out infinite" }} />
+        <style>{`
+          @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+          }
+        `}</style>
+
+        <p className="relative text-sm font-semibold uppercase tracking-widest text-gf-gold-light">Estimated Price Range</p>
+        <p className="relative mt-3 text-5xl font-bold sm:text-6xl">
+          ${estimate.low.toLocaleString()} <span className="text-gf-gold-light">&ndash;</span> ${estimate.high.toLocaleString()}
         </p>
-        <p className="mt-3 text-sm text-gf-cream/70">Based on your selections</p>
+        <p className="relative mt-3 text-sm text-gf-cream/70">Based on your selections</p>
+
+        {/* Savings badge */}
+        <div className="relative mx-auto mt-5 inline-flex items-center gap-2 rounded-full bg-gf-gold/20 px-4 py-2 backdrop-blur-sm">
+          <svg className="h-4 w-4 text-gf-gold-light" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span className="text-sm font-semibold text-gf-gold-light">Returning customers save 20-30%!</span>
+        </div>
       </div>
 
       {/* Included */}
-      <div>
+      <div className={`transition-all duration-700 delay-200 ${visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}>
         <p className="mb-3 font-semibold text-gf-charcoal">What&apos;s Included:</p>
-        <ul className="grid gap-2 sm:grid-cols-2">
+        <ul className="grid gap-3 sm:grid-cols-2">
           {included.map((item) => (
-            <li key={item} className="flex items-center gap-2 text-gf-charcoal">
-              <svg className="h-5 w-5 shrink-0 text-gf-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              {item}
+            <li key={item} className="flex items-center gap-3 rounded-lg bg-gf-green/5 px-4 py-3 text-gf-charcoal">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gf-green">
+                <CheckIcon className="h-3.5 w-3.5 text-white" />
+              </span>
+              <span className="font-medium">{item}</span>
             </li>
           ))}
         </ul>
       </div>
 
       {/* Contact form */}
-      <div className="rounded-xl border border-gf-gray-light bg-gf-gray-light/30 p-6">
-        <h4 className="mb-4 text-lg font-bold text-gf-charcoal">Schedule Your Free Consultation</h4>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div>
-            <label htmlFor="quote-name" className="mb-1 block text-sm font-medium text-gf-charcoal">
-              Name <span className="text-red-600">*</span>
+      <div className={`rounded-2xl border border-gray-200 bg-gradient-to-b from-gf-gray-light/50 to-white p-8 shadow-sm transition-all duration-700 delay-300 ${visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}>
+        <h4 className="mb-6 text-lg font-bold text-gf-charcoal">Schedule Your Free Consultation</h4>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div className="group">
+            <label htmlFor="quote-name" className="mb-1.5 block text-sm font-semibold text-gf-charcoal">
+              Name <span className="text-gf-red">*</span>
             </label>
             <input
               id="quote-name"
@@ -480,14 +655,14 @@ function Step4({
               required
               value={data.name}
               onChange={(e) => onChange({ name: e.target.value })}
-              className="w-full rounded-lg border border-gf-gray-light px-4 py-2.5 text-gf-charcoal placeholder:text-gf-gray focus:border-gf-green focus:ring-2 focus:ring-gf-green/20 focus:outline-none"
+              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal placeholder:text-gf-gray/60 transition-all duration-300 focus:border-gf-green focus:ring-4 focus:ring-gf-green/10 focus:outline-none"
               placeholder="John Smith"
             />
           </div>
 
           <div>
-            <label htmlFor="quote-email" className="mb-1 block text-sm font-medium text-gf-charcoal">
-              Email <span className="text-red-600">*</span>
+            <label htmlFor="quote-email" className="mb-1.5 block text-sm font-semibold text-gf-charcoal">
+              Email <span className="text-gf-red">*</span>
             </label>
             <input
               id="quote-email"
@@ -495,14 +670,14 @@ function Step4({
               required
               value={data.email}
               onChange={(e) => onChange({ email: e.target.value })}
-              className="w-full rounded-lg border border-gf-gray-light px-4 py-2.5 text-gf-charcoal placeholder:text-gf-gray focus:border-gf-green focus:ring-2 focus:ring-gf-green/20 focus:outline-none"
+              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal placeholder:text-gf-gray/60 transition-all duration-300 focus:border-gf-green focus:ring-4 focus:ring-gf-green/10 focus:outline-none"
               placeholder="john@example.com"
             />
           </div>
 
           <div>
-            <label htmlFor="quote-phone" className="mb-1 block text-sm font-medium text-gf-charcoal">
-              Phone <span className="text-red-600">*</span>
+            <label htmlFor="quote-phone" className="mb-1.5 block text-sm font-semibold text-gf-charcoal">
+              Phone <span className="text-gf-red">*</span>
             </label>
             <input
               id="quote-phone"
@@ -510,21 +685,21 @@ function Step4({
               required
               value={data.phone}
               onChange={(e) => onChange({ phone: e.target.value })}
-              className="w-full rounded-lg border border-gf-gray-light px-4 py-2.5 text-gf-charcoal placeholder:text-gf-gray focus:border-gf-green focus:ring-2 focus:ring-gf-green/20 focus:outline-none"
+              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal placeholder:text-gf-gray/60 transition-all duration-300 focus:border-gf-green focus:ring-4 focus:ring-gf-green/10 focus:outline-none"
               placeholder="(555) 123-4567"
             />
           </div>
 
           <div>
-            <label htmlFor="quote-area" className="mb-1 block text-sm font-medium text-gf-charcoal">
-              Service Area <span className="text-red-600">*</span>
+            <label htmlFor="quote-area" className="mb-1.5 block text-sm font-semibold text-gf-charcoal">
+              Service Area <span className="text-gf-red">*</span>
             </label>
             <select
               id="quote-area"
               required
               value={data.serviceArea}
               onChange={(e) => onChange({ serviceArea: e.target.value as ServiceArea })}
-              className="w-full rounded-lg border border-gf-gray-light px-4 py-2.5 text-gf-charcoal focus:border-gf-green focus:ring-2 focus:ring-gf-green/20 focus:outline-none"
+              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal transition-all duration-300 focus:border-gf-green focus:ring-4 focus:ring-gf-green/10 focus:outline-none"
             >
               <option value="">Select your area</option>
               <option value="lake-norman">Lake Norman</option>
@@ -535,8 +710,8 @@ function Step4({
           </div>
 
           <div className="sm:col-span-2">
-            <label htmlFor="quote-address" className="mb-1 block text-sm font-medium text-gf-charcoal">
-              Address <span className="text-red-600">*</span>
+            <label htmlFor="quote-address" className="mb-1.5 block text-sm font-semibold text-gf-charcoal">
+              Address <span className="text-gf-red">*</span>
             </label>
             <input
               id="quote-address"
@@ -544,20 +719,20 @@ function Step4({
               required
               value={data.address}
               onChange={(e) => onChange({ address: e.target.value })}
-              className="w-full rounded-lg border border-gf-gray-light px-4 py-2.5 text-gf-charcoal placeholder:text-gf-gray focus:border-gf-green focus:ring-2 focus:ring-gf-green/20 focus:outline-none"
+              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal placeholder:text-gf-gray/60 transition-all duration-300 focus:border-gf-green focus:ring-4 focus:ring-gf-green/10 focus:outline-none"
               placeholder="123 Main St, Mooresville, NC 28117"
             />
           </div>
 
           <div>
-            <label htmlFor="quote-contact-method" className="mb-1 block text-sm font-medium text-gf-charcoal">
+            <label htmlFor="quote-contact-method" className="mb-1.5 block text-sm font-semibold text-gf-charcoal">
               Preferred Contact Method
             </label>
             <select
               id="quote-contact-method"
               value={data.contactMethod}
               onChange={(e) => onChange({ contactMethod: e.target.value as ContactMethod })}
-              className="w-full rounded-lg border border-gf-gray-light px-4 py-2.5 text-gf-charcoal focus:border-gf-green focus:ring-2 focus:ring-gf-green/20 focus:outline-none"
+              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal transition-all duration-300 focus:border-gf-green focus:ring-4 focus:ring-gf-green/10 focus:outline-none"
             >
               <option value="">No preference</option>
               <option value="phone">Phone call</option>
@@ -567,7 +742,7 @@ function Step4({
           </div>
 
           <div className="sm:col-span-2">
-            <label htmlFor="quote-message" className="mb-1 block text-sm font-medium text-gf-charcoal">
+            <label htmlFor="quote-message" className="mb-1.5 block text-sm font-semibold text-gf-charcoal">
               Message (optional)
             </label>
             <textarea
@@ -575,7 +750,7 @@ function Step4({
               rows={3}
               value={data.message}
               onChange={(e) => onChange({ message: e.target.value })}
-              className="w-full rounded-lg border border-gf-gray-light px-4 py-2.5 text-gf-charcoal placeholder:text-gf-gray focus:border-gf-green focus:ring-2 focus:ring-gf-green/20 focus:outline-none"
+              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal placeholder:text-gf-gray/60 transition-all duration-300 focus:border-gf-green focus:ring-4 focus:ring-gf-green/10 focus:outline-none"
               placeholder="Anything else we should know?"
             />
           </div>
@@ -585,9 +760,19 @@ function Step4({
           type="button"
           onClick={onSubmit}
           disabled={submitting}
-          className="mt-6 w-full rounded-lg bg-gf-gold px-8 py-3.5 text-lg font-bold text-white shadow-lg transition-all hover:bg-gf-gold-light hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+          className="mt-8 w-full rounded-xl bg-gradient-to-r from-gf-gold to-gf-gold-light px-8 py-4 text-lg font-bold text-white shadow-lg shadow-gf-gold/25 transition-all duration-300 hover:shadow-xl hover:shadow-gf-gold/30 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-lg"
         >
-          {submitting ? "Submitting..." : "Request My Free Consultation"}
+          {submitting ? (
+            <span className="inline-flex items-center gap-2">
+              <svg className="h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              Submitting...
+            </span>
+          ) : (
+            "Request My Free Consultation"
+          )}
         </button>
       </div>
 
@@ -609,6 +794,8 @@ export default function QuoteEstimator() {
   const [data, setData] = useState<FormData>(initialFormData);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [direction, setDirection] = useState<"forward" | "back">("forward");
+  const [transitioning, setTransitioning] = useState(false);
 
   const update = useCallback((patch: Partial<FormData>) => {
     setData((prev) => ({ ...prev, ...patch }));
@@ -627,10 +814,18 @@ export default function QuoteEstimator() {
     }
   };
 
+  const goToStep = (newStep: number) => {
+    setDirection(newStep > step ? "forward" : "back");
+    setTransitioning(true);
+    setTimeout(() => {
+      setStep(newStep);
+      setTransitioning(false);
+    }, 200);
+  };
+
   const handleSubmit = async () => {
     if (!data.name || !data.email || !data.phone || !data.address || !data.serviceArea) return;
     setSubmitting(true);
-    // Simulate submission
     await new Promise((r) => setTimeout(r, 1500));
     setSubmitting(false);
     setSubmitted(true);
@@ -640,35 +835,55 @@ export default function QuoteEstimator() {
 
   if (submitted) {
     return (
-      <div className="mx-auto max-w-2xl rounded-2xl bg-white p-8 text-center shadow-lg sm:p-12">
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gf-green/10">
-          <svg className="h-8 w-8 text-gf-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
+      <div className="relative mx-auto max-w-2xl overflow-hidden rounded-2xl bg-white p-8 text-center shadow-xl sm:p-12">
+        <ConfettiDots />
+
+        <div className="relative">
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-gf-green to-gf-green-light shadow-lg shadow-gf-green/20" style={{ animation: "scaleIn 0.5s ease-out" }}>
+            <CheckIcon className="h-10 w-10 text-white" />
+          </div>
+          <style>{`
+            @keyframes scaleIn {
+              0% { transform: scale(0); opacity: 0; }
+              60% { transform: scale(1.1); }
+              100% { transform: scale(1); opacity: 1; }
+            }
+          `}</style>
+          <h3 className="text-3xl font-bold text-gf-charcoal">Thank You!</h3>
+          <p className="mt-3 text-lg text-gf-gray">
+            Your consultation request has been submitted. A Go-Forth design specialist will reach out
+            within 1 business day to schedule your free in-person consultation.
+          </p>
+
+          <div className="mx-auto mt-6 inline-block rounded-2xl border-2 border-gf-gold/30 bg-gradient-to-br from-gf-warm-white to-white px-8 py-4 shadow-md">
+            <p className="text-sm font-semibold uppercase tracking-wider text-gf-gold">Your Estimate</p>
+            <p className="mt-1 text-3xl font-bold text-gf-green">
+              ${estimate.low.toLocaleString()} &ndash; ${estimate.high.toLocaleString()}
+            </p>
+          </div>
+
+          <p className="mt-8 text-sm text-gf-gray">
+            Have questions? Call us at{" "}
+            <a href="tel:+18772741475" className="font-bold text-gf-green transition-colors hover:text-gf-green-light hover:underline">
+              (877) 274-1475
+            </a>
+          </p>
         </div>
-        <h3 className="text-2xl font-bold text-gf-charcoal">Thank You!</h3>
-        <p className="mt-3 text-gf-gray">
-          Your consultation request has been submitted. A Go-Forth design specialist will reach out
-          within 1 business day to schedule your free in-person consultation.
-        </p>
-        <p className="mt-4 text-lg font-semibold text-gf-green">
-          Your Estimate: ${estimate.low.toLocaleString()} &ndash; ${estimate.high.toLocaleString()}
-        </p>
-        <p className="mt-6 text-sm text-gf-gray">
-          Have questions? Call us at{" "}
-          <a href="tel:+18772741475" className="font-semibold text-gf-green hover:underline">
-            (877) 274-1475
-          </a>
-        </p>
       </div>
     );
   }
 
+  const transitionClass = transitioning
+    ? direction === "forward"
+      ? "opacity-0 translate-x-8"
+      : "opacity-0 -translate-x-8"
+    : "opacity-100 translate-x-0";
+
   return (
-    <div className="mx-auto max-w-2xl rounded-2xl bg-white p-6 shadow-lg sm:p-10">
+    <div className="mx-auto max-w-2xl rounded-2xl border border-gray-100 bg-white p-6 shadow-xl sm:p-10">
       <ProgressBar step={step} />
 
-      <div className="min-h-[400px]">
+      <div className={`min-h-[400px] transition-all duration-300 ease-out ${transitionClass}`}>
         {step === 1 && <Step1 data={data} onChange={update} />}
         {step === 2 && <Step2 data={data} onChange={update} />}
         {step === 3 && <Step3 data={data} onChange={update} />}
@@ -685,32 +900,32 @@ export default function QuoteEstimator() {
 
       {/* Navigation */}
       {step < 4 && (
-        <div className="mt-8 flex items-center justify-between">
+        <div className="mt-10 flex items-center justify-between">
           <button
             type="button"
-            onClick={() => setStep((s) => Math.max(1, s - 1))}
+            onClick={() => goToStep(Math.max(1, step - 1))}
             disabled={step === 1}
-            className="rounded-lg border border-gf-gray-light px-6 py-2.5 font-medium text-gf-charcoal transition-all hover:bg-gf-gray-light disabled:invisible"
+            className="rounded-xl border-2 border-gray-200 px-6 py-3 font-semibold text-gf-charcoal transition-all duration-300 hover:border-gf-gray hover:bg-gf-gray-light disabled:invisible"
           >
             Back
           </button>
           <button
             type="button"
-            onClick={() => setStep((s) => Math.min(4, s + 1))}
+            onClick={() => goToStep(Math.min(4, step + 1))}
             disabled={!canAdvance(step)}
-            className="rounded-lg bg-gf-green px-8 py-2.5 font-bold text-white shadow transition-all hover:bg-gf-green-light hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+            className="rounded-xl bg-gradient-to-r from-gf-gold to-gf-gold-light px-10 py-3 font-bold text-white shadow-md shadow-gf-gold/20 transition-all duration-300 hover:shadow-lg hover:shadow-gf-gold/30 hover:-translate-y-0.5 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-md"
           >
-            Next
+            Next Step
           </button>
         </div>
       )}
 
       {step === 4 && (
-        <div className="mt-6 flex justify-start">
+        <div className="mt-8 flex justify-start">
           <button
             type="button"
-            onClick={() => setStep(3)}
-            className="rounded-lg border border-gf-gray-light px-6 py-2.5 font-medium text-gf-charcoal transition-all hover:bg-gf-gray-light"
+            onClick={() => goToStep(3)}
+            className="rounded-xl border-2 border-gray-200 px-6 py-3 font-semibold text-gf-charcoal transition-all duration-300 hover:border-gf-gray hover:bg-gf-gray-light"
           >
             Back
           </button>

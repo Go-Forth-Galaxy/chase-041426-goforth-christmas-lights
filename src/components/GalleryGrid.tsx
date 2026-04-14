@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 
 /* ------------------------------------------------------------------ */
 /* Types & Data                                                        */
@@ -16,22 +17,22 @@ interface Project {
   location: string;
   category: Category;
   region: Region;
-  gradient: string;
+  image: string;
 }
 
 const projects: Project[] = [
-  { id: 1, title: "Lakefront Estate", location: "Mooresville", category: "Residential", region: "Lake Norman", gradient: "from-emerald-900 via-emerald-800 to-teal-900" },
-  { id: 2, title: "Historic Bungalow", location: "Davidson", category: "Residential", region: "Lake Norman", gradient: "from-amber-900 via-orange-900 to-red-950" },
-  { id: 3, title: "Mountain Lodge", location: "Blowing Rock", category: "Residential", region: "Boone", gradient: "from-slate-800 via-blue-900 to-indigo-950" },
-  { id: 4, title: "Downtown Storefront", location: "High Point", category: "Commercial", region: "Triad", gradient: "from-rose-900 via-red-900 to-rose-950" },
-  { id: 5, title: "Two-Story Colonial", location: "Greensboro", category: "Residential", region: "Triad", gradient: "from-green-900 via-emerald-900 to-teal-950" },
-  { id: 6, title: "Restaurant Patio", location: "Winston-Salem", category: "Commercial", region: "Triad", gradient: "from-purple-900 via-violet-900 to-indigo-950" },
-  { id: 7, title: "Modern Farmhouse", location: "Huntersville", category: "Residential", region: "Lake Norman", gradient: "from-sky-900 via-blue-900 to-cyan-950" },
-  { id: 8, title: "Shopping Center", location: "Hickory", category: "Commercial", region: "Hickory", gradient: "from-amber-900 via-yellow-900 to-orange-950" },
-  { id: 9, title: "Craftsman Home", location: "Cornelius", category: "Residential", region: "Lake Norman", gradient: "from-teal-900 via-cyan-900 to-emerald-950" },
-  { id: 10, title: "Church Facade", location: "Kernersville", category: "Commercial", region: "Triad", gradient: "from-red-900 via-rose-900 to-pink-950" },
-  { id: 11, title: "Cabin Retreat", location: "Banner Elk", category: "Residential", region: "Boone", gradient: "from-stone-800 via-stone-900 to-neutral-950" },
-  { id: 12, title: "Townhome Row", location: "Statesville", category: "Residential", region: "Lake Norman", gradient: "from-blue-900 via-indigo-900 to-violet-950" },
+  { id: 1, title: "Lakefront Estate", location: "Mooresville", category: "Residential", region: "Lake Norman", image: "/images/gallery/lakefront-estate.jpg" },
+  { id: 2, title: "Historic Bungalow", location: "Davidson", category: "Residential", region: "Lake Norman", image: "/images/gallery/victorian-elegant.jpg" },
+  { id: 3, title: "Mountain Lodge", location: "Blowing Rock", category: "Residential", region: "Boone", image: "/images/gallery/mountain-cabin.jpg" },
+  { id: 4, title: "Downtown Storefront", location: "High Point", category: "Commercial", region: "Triad", image: "/images/gallery/commercial-storefront.jpg" },
+  { id: 5, title: "Two-Story Colonial", location: "Greensboro", category: "Residential", region: "Triad", image: "/images/gallery/traditional-festive.jpg" },
+  { id: 6, title: "Restaurant Patio", location: "Winston-Salem", category: "Commercial", region: "Triad", image: "/images/gallery/walkway-landscape.jpg" },
+  { id: 7, title: "Modern Farmhouse", location: "Huntersville", category: "Residential", region: "Lake Norman", image: "/images/gallery/modern-farmhouse.jpg" },
+  { id: 8, title: "Shopping Center", location: "Hickory", category: "Commercial", region: "Hickory", image: "/images/gallery/showstopper.jpg" },
+  { id: 9, title: "Craftsman Home", location: "Cornelius", category: "Residential", region: "Lake Norman", image: "/images/gallery/craftsman-cozy.jpg" },
+  { id: 10, title: "Church Facade", location: "Kernersville", category: "Commercial", region: "Triad", image: "/images/gallery/classic-elegance.jpg" },
+  { id: 11, title: "Cabin Retreat", location: "Banner Elk", category: "Residential", region: "Boone", image: "/images/gallery/wrapped-trees.jpg" },
+  { id: 12, title: "Townhome Row", location: "Statesville", category: "Residential", region: "Lake Norman", image: "/images/gallery/traditional-festive.jpg" },
 ];
 
 const filterTabs: FilterTab[] = ["All", "Residential", "Commercial", "Lake Norman", "Triad"];
@@ -42,6 +43,22 @@ const filterTabs: FilterTab[] = ["All", "Residential", "Commercial", "Lake Norma
 
 export default function GalleryGrid() {
   const [activeFilter, setActiveFilter] = useState<FilterTab>("All");
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+
+  // Update the sliding indicator position
+  useEffect(() => {
+    if (!tabsRef.current) return;
+    const activeBtn = tabsRef.current.querySelector<HTMLButtonElement>("[aria-selected='true']");
+    if (activeBtn) {
+      const containerRect = tabsRef.current.getBoundingClientRect();
+      const btnRect = activeBtn.getBoundingClientRect();
+      setIndicator({
+        left: btnRect.left - containerRect.left,
+        width: btnRect.width,
+      });
+    }
+  }, [activeFilter]);
 
   const filtered = activeFilter === "All"
     ? projects
@@ -51,79 +68,84 @@ export default function GalleryGrid() {
 
   return (
     <div>
-      {/* Filter tabs */}
-      <div className="mb-8 flex flex-wrap justify-center gap-2" role="tablist" aria-label="Filter gallery by category or region">
-        {filterTabs.map((tab) => (
-          <button
-            key={tab}
-            type="button"
-            role="tab"
-            aria-selected={activeFilter === tab}
-            aria-controls="gallery-grid"
-            onClick={() => setActiveFilter(tab)}
-            className={`rounded-full px-5 py-2 text-sm font-semibold transition-all ${
-              activeFilter === tab
-                ? "bg-gf-green text-white shadow-md"
-                : "bg-white text-gf-charcoal hover:bg-gf-green/10"
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
+      {/* Filter tabs with sliding indicator */}
+      <div className="mb-10 flex justify-center">
+        <div
+          ref={tabsRef}
+          className="relative inline-flex flex-wrap gap-1 rounded-full bg-gf-gray-light/80 p-1.5"
+          role="tablist"
+          aria-label="Filter gallery by category or region"
+        >
+          {/* Sliding indicator */}
+          <div
+            className="absolute top-1.5 h-[calc(100%-12px)] rounded-full bg-gf-green shadow-md transition-all duration-300 ease-out"
+            style={{ left: indicator.left, width: indicator.width }}
+            aria-hidden="true"
+          />
+
+          {filterTabs.map((tab) => (
+            <button
+              key={tab}
+              type="button"
+              role="tab"
+              aria-selected={activeFilter === tab}
+              aria-controls="gallery-grid"
+              onClick={() => setActiveFilter(tab)}
+              className={`relative z-10 rounded-full px-5 py-2 text-sm font-semibold transition-colors duration-300 ${
+                activeFilter === tab
+                  ? "text-white"
+                  : "text-gf-charcoal hover:text-gf-green"
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* Grid */}
+      {/* Grid with masonry-like effect */}
       <div
         id="gallery-grid"
         role="tabpanel"
-        className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+        className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
       >
-        {filtered.map((project) => (
+        {filtered.map((project, index) => (
           <article
             key={project.id}
-            className="group relative overflow-hidden rounded-2xl shadow-md transition-all duration-300 hover:shadow-xl"
+            className="group relative overflow-hidden rounded-2xl shadow-md transition-all duration-500 hover:shadow-2xl"
           >
-            {/* Placeholder gradient background */}
-            <div className={`aspect-[4/3] bg-gradient-to-br ${project.gradient} relative`}>
-              {/* Sparkle / star overlay */}
-              <div className="absolute inset-0 opacity-30">
-                <svg className="h-full w-full" viewBox="0 0 400 300" fill="none" aria-hidden="true">
-                  <circle cx="50" cy="40" r="2" fill="white" opacity="0.8" />
-                  <circle cx="150" cy="80" r="1.5" fill="white" opacity="0.6" />
-                  <circle cx="280" cy="50" r="2" fill="white" opacity="0.7" />
-                  <circle cx="350" cy="120" r="1" fill="white" opacity="0.5" />
-                  <circle cx="100" cy="180" r="1.5" fill="white" opacity="0.6" />
-                  <circle cx="220" cy="150" r="2" fill="white" opacity="0.8" />
-                  <circle cx="320" cy="220" r="1.5" fill="white" opacity="0.5" />
-                  <circle cx="80" cy="250" r="1" fill="white" opacity="0.7" />
-                  <circle cx="200" cy="260" r="2" fill="white" opacity="0.6" />
-                  {/* Simple house silhouette */}
-                  <path d="M100 280 L100 200 L200 140 L300 200 L300 280 Z" fill="black" opacity="0.2" />
-                  <path d="M130 280 L130 220 L170 220 L170 280 Z" fill="black" opacity="0.15" />
-                  {/* Roofline lights */}
-                  <circle cx="120" cy="208" r="3" fill="#f0d078" opacity="0.9" />
-                  <circle cx="145" cy="193" r="3" fill="#f0d078" opacity="0.9" />
-                  <circle cx="170" cy="178" r="3" fill="#f0d078" opacity="0.9" />
-                  <circle cx="195" cy="165" r="3" fill="#f0d078" opacity="0.9" />
-                  <circle cx="220" cy="175" r="3" fill="#f0d078" opacity="0.9" />
-                  <circle cx="245" cy="188" r="3" fill="#f0d078" opacity="0.9" />
-                  <circle cx="270" cy="198" r="3" fill="#f0d078" opacity="0.9" />
-                </svg>
+            {/* Project image with zoom on hover */}
+            <div
+              className="relative overflow-hidden bg-gray-900"
+              style={{ minHeight: index % 3 === 0 ? "320px" : index % 3 === 1 ? "260px" : "290px" }}
+            >
+              <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105">
+                <Image
+                  src={project.image}
+                  alt={`${project.title} Christmas light installation in ${project.location}`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover"
+                />
               </div>
 
-              {/* Tags */}
-              <div className="absolute left-3 top-3 flex gap-2">
-                <span className="rounded-full bg-black/40 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+              {/* Tags - glassmorphism pills */}
+              <div className="absolute left-3 top-3 flex gap-2 z-10">
+                <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md border border-white/20">
                   {project.category}
                 </span>
-                <span className="rounded-full bg-black/40 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+                <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md border border-white/20">
                   {project.region}
                 </span>
               </div>
 
-              {/* Hover overlay */}
-              <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <div className="w-full p-5">
+              {/* Hover overlay with slide-up content */}
+              <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-10">
+                <div className="w-full p-5 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-lg font-bold text-white font-[family-name:var(--font-display)] mb-1">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-gray-300 mb-3">{project.location}</p>
                   <button
                     type="button"
                     className="w-full rounded-lg bg-white/90 px-4 py-2.5 text-sm font-bold text-gf-charcoal backdrop-blur-sm transition-colors hover:bg-white"
@@ -135,7 +157,7 @@ export default function GalleryGrid() {
               </div>
             </div>
 
-            {/* Card text */}
+            {/* Card text - hidden on hover via the overlay */}
             <div className="bg-white p-4">
               <h3 className="font-bold text-gf-charcoal">{project.title}</h3>
               <p className="mt-0.5 text-sm text-gf-gray">{project.location}</p>
