@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import basePath from "@/lib/basePath";
 import AvailabilityBadge from "@/components/AvailabilityBadge";
 import ServiceAreaCard from "@/components/ServiceAreaCard";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
@@ -12,7 +13,7 @@ const serviceAreas = [
     description:
       "From lakefront estates to charming neighborhoods, we bring holiday magic to the Lake Norman area.",
     href: "/service-areas/lake-norman",
-    image: "/images/service-areas/lake-norman.jpg",
+    image: `${basePath}/images/service-areas/lake-norman.jpg`,
   },
   {
     name: "Triad",
@@ -20,7 +21,7 @@ const serviceAreas = [
     description:
       "Our home territory since 1959. Professional holiday lighting for the Triad's finest homes and businesses.",
     href: "/service-areas/triad",
-    image: "/images/service-areas/triad.jpg",
+    image: `${basePath}/images/service-areas/triad.jpg`,
   },
   {
     name: "Hickory",
@@ -28,7 +29,7 @@ const serviceAreas = [
     description:
       "Bringing professional Christmas light installation to the Catawba Valley and surrounding foothills.",
     href: "/service-areas/hickory",
-    image: "/images/service-areas/hickory.jpg",
+    image: `${basePath}/images/service-areas/hickory.jpg`,
   },
   {
     name: "Boone",
@@ -36,7 +37,7 @@ const serviceAreas = [
     description:
       "Holiday lights that shine bright in the High Country. Mountain homes deserve mountain-grade installation.",
     href: "/service-areas/boone",
-    image: "/images/service-areas/boone.jpg",
+    image: `${basePath}/images/service-areas/boone.jpg`,
   },
 ];
 
@@ -128,7 +129,7 @@ export default function Home() {
         {/* Hero background image */}
         <div aria-hidden="true" className="absolute inset-0">
           <Image
-            src="/images/hero-main.jpg"
+            src={`${basePath}/images/hero-main.jpg`}
             alt=""
             fill
             sizes="100vw"
@@ -559,7 +560,7 @@ export default function Home() {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/10">
                 <Image
-                  src="/images/gallery/commercial-storefront.jpg"
+                  src={`${basePath}/images/gallery/commercial-storefront.jpg`}
                   alt="Professional commercial Christmas lighting on a downtown storefront"
                   width={600}
                   height={450}

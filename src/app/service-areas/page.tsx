@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import basePath from "@/lib/basePath";
 
 export const metadata: Metadata = {
   title: "Christmas Light Installation Service Areas | Go-Forth",
@@ -16,7 +17,7 @@ const areas = [
     description:
       "From lakefront estates to charming neighborhoods, we bring holiday magic to the Lake Norman area.",
     href: "/service-areas/lake-norman",
-    image: "/images/service-areas/lake-norman.jpg",
+    image: `${basePath}/images/service-areas/lake-norman.jpg`,
   },
   {
     name: "Triad",
@@ -24,7 +25,7 @@ const areas = [
     description:
       "Our home territory since 1959. Professional holiday lighting for the Triad's finest homes and businesses.",
     href: "/service-areas/triad",
-    image: "/images/service-areas/triad.jpg",
+    image: `${basePath}/images/service-areas/triad.jpg`,
   },
   {
     name: "Hickory",
@@ -32,7 +33,7 @@ const areas = [
     description:
       "Bringing professional Christmas light installation to the Catawba Valley and surrounding foothills.",
     href: "/service-areas/hickory",
-    image: "/images/service-areas/hickory.jpg",
+    image: `${basePath}/images/service-areas/hickory.jpg`,
   },
   {
     name: "Boone / High Country",
@@ -40,7 +41,7 @@ const areas = [
     description:
       "Holiday lights that shine bright in the High Country. Mountain homes deserve mountain-grade installation.",
     href: "/service-areas/boone",
-    image: "/images/service-areas/boone.jpg",
+    image: `${basePath}/images/service-areas/boone.jpg`,
   },
 ];
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import basePath from "@/lib/basePath";
 import CTABanner from "@/components/CTABanner";
 import TestimonialCard from "@/components/TestimonialCard";
 import AvailabilityBadge from "@/components/AvailabilityBadge";
@@ -64,7 +65,7 @@ export default function LakeNormanPage() {
       <section className="relative bg-gf-red-dark px-4 py-20 sm:py-28 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/service-areas/lake-norman.jpg"
+            src={`${basePath}/images/service-areas/lake-norman.jpg`}
             alt=""
             fill
             sizes="100vw"
