@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 function BackToTop() {
   return (
@@ -26,7 +27,7 @@ function BackToTop() {
 
 export default function Footer() {
   return (
-    <footer className="relative bg-gf-green-dark text-gray-300 footer-pattern">
+    <footer className="relative bg-gf-red-dark text-gray-300 footer-pattern">
       {/* Gold gradient top border */}
       <div className="h-1 bg-gradient-to-r from-gf-gold/30 via-gf-gold to-gf-gold/30" />
 
@@ -35,15 +36,15 @@ export default function Footer() {
           {/* Logo & tagline */}
           <div>
             <Link href="/" className="inline-flex items-center gap-2 group">
-              <svg
-                className="w-6 h-6 text-gf-gold transition-transform duration-300 group-hover:rotate-[20deg]"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M12 2l2.09 6.26L20.18 9l-5 4.27L16.82 20 12 16.77 7.18 20l1.64-6.73L3.82 9l6.09-.74L12 2z" />
-              </svg>
-              <span className="text-white font-bold text-lg font-[family-name:var(--font-display)]">
-                Go-Forth Christmas Lights
+              <Image
+                src="/images/logo-light.png"
+                alt="Go-Forth Home Services"
+                width={140}
+                height={42}
+                className="h-9 w-auto transition-transform duration-300 group-hover:scale-105"
+              />
+              <span className="text-gf-gold font-semibold text-sm tracking-wider uppercase">
+                Christmas Lights
               </span>
             </Link>
             <p className="mt-2 text-sm leading-relaxed text-gray-400">

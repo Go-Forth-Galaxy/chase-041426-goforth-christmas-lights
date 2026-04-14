@@ -67,7 +67,7 @@ export default function HowItWorks() {
               <div className="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-white shadow-md">
                 {step.icon}
               </div>
-              <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gf-green text-white text-xs font-bold mb-2">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gf-red text-white text-xs font-bold mb-2">
                 {step.number}
               </span>
               <h3 className="text-lg font-semibold text-gf-charcoal">{step.title}</h3>

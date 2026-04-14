@@ -11,7 +11,7 @@ export default function TestimonialCard({ quote, name, location, stars, rating }
   const initial = name.charAt(0).toUpperCase();
 
   return (
-    <blockquote className="group relative flex flex-col rounded-xl border-l-4 border-l-gf-green bg-white p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+    <blockquote className="group relative flex flex-col rounded-xl border-l-4 border-l-gf-red bg-white p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden">
       {/* Decorative quote mark */}
       <span
         className="pointer-events-none absolute -top-2 -left-1 text-[8rem] leading-none font-serif text-gf-gold/10 select-none"
@@ -23,7 +23,7 @@ export default function TestimonialCard({ quote, name, location, stars, rating }
       {/* Avatar + Stars row */}
       <div className="flex items-center gap-4 mb-5 relative z-10">
         {/* Avatar circle */}
-        <div className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-full bg-gradient-to-br from-gf-green to-gf-green-light text-white text-lg font-bold shadow-sm">
+        <div className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-full bg-gradient-to-br from-gf-red to-gf-red-light text-white text-lg font-bold shadow-sm">
           {initial}
         </div>
 

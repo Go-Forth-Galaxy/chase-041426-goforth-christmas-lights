@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -27,7 +28,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50">
       {/* Slim top bar */}
-      <div className="hidden md:block bg-gf-green-dark text-white/80 text-xs">
+      <div className="hidden md:block bg-gf-red-dark text-white/80 text-xs">
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-8">
           <a
             href="tel:+18772741475"
@@ -58,22 +59,17 @@ export default function Header() {
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-full">
           {/* Logo area */}
           <Link href="/" className="flex items-center gap-2.5 group">
-            {/* Decorative star icon */}
-            <svg
-              className="w-7 h-7 text-gf-gold transition-transform duration-300 group-hover:rotate-[20deg]"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path d="M12 2l2.09 6.26L20.18 9l-5 4.27L16.82 20 12 16.77 7.18 20l1.64-6.73L3.82 9l6.09-.74L12 2z" />
-            </svg>
-            <div className="flex flex-col leading-tight">
-              <span className="font-[family-name:var(--font-display)] text-2xl font-bold text-gf-green tracking-tight">
-                Go-Forth
-              </span>
-              <span className="text-gf-gold text-[10px] font-semibold tracking-widest uppercase hidden sm:block">
-                Christmas Lights
-              </span>
-            </div>
+            <Image
+              src="/images/logo-dark.png"
+              alt="Go-Forth Home Services"
+              width={160}
+              height={48}
+              className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+              priority
+            />
+            <span className="text-gf-gold text-[10px] font-semibold tracking-widest uppercase hidden sm:block">
+              Christmas Lights
+            </span>
           </Link>
 
           {/* Desktop nav */}
@@ -82,7 +78,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="nav-link-animated text-sm font-medium text-gf-charcoal hover:text-gf-green transition-colors py-1"
+                className="nav-link-animated text-sm font-medium text-gf-charcoal hover:text-gf-red transition-colors py-1"
               >
                 {link.label}
               </Link>
@@ -99,7 +95,7 @@ export default function Header() {
           <div className="flex items-center gap-3 md:hidden">
             <a
               href="tel:+18772741475"
-              className="p-2 text-gf-green hover:text-gf-gold transition-colors"
+              className="p-2 text-gf-red hover:text-gf-gold transition-colors"
               aria-label="Call us"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -140,7 +136,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="block py-3 text-sm font-medium text-gf-charcoal hover:text-gf-green border-b border-gray-50 transition-colors"
+                className="block py-3 text-sm font-medium text-gf-charcoal hover:text-gf-red border-b border-gray-50 transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
@@ -155,7 +151,7 @@ export default function Header() {
             </Link>
             <a
               href="tel:+18772741475"
-              className="mt-3 block text-center text-sm text-gf-green font-medium"
+              className="mt-3 block text-center text-sm text-gf-red font-medium"
             >
               Call (877) 274-1475
             </a>

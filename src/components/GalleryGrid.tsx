@@ -78,7 +78,7 @@ export default function GalleryGrid() {
         >
           {/* Sliding indicator */}
           <div
-            className="absolute top-1.5 h-[calc(100%-12px)] rounded-full bg-gf-green shadow-md transition-all duration-300 ease-out"
+            className="absolute top-1.5 h-[calc(100%-12px)] rounded-full bg-gf-red shadow-md transition-all duration-300 ease-out"
             style={{ left: indicator.left, width: indicator.width }}
             aria-hidden="true"
           />
@@ -94,7 +94,7 @@ export default function GalleryGrid() {
               className={`relative z-10 rounded-full px-5 py-2 text-sm font-semibold transition-colors duration-300 ${
                 activeFilter === tab
                   ? "text-white"
-                  : "text-gf-charcoal hover:text-gf-green"
+                  : "text-gf-charcoal hover:text-gf-red"
               }`}
             >
               {tab}

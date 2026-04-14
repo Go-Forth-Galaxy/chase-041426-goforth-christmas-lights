@@ -4,10 +4,11 @@
   --color-gf-green: #1a5632;
   --color-gf-green-dark: #0f3d22;
   --color-gf-green-light: #2a7a4a;
+  --color-gf-red: #b71c1c;
+  --color-gf-red-dark: #7f0000;
+  --color-gf-red-light: #e53935;
   --color-gf-gold: #d4a843;
   --color-gf-gold-light: #f0d078;
-  --color-gf-red: #8b1a1a;
-  --color-gf-red-light: #c0392b;
   --color-gf-cream: #faf8f0;
   --color-gf-warm-white: #fff8e7;
   --color-gf-charcoal: #2d2d2d;
@@ -44,18 +45,18 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-gf-green);
+  background: var(--color-gf-red);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-gf-green-light);
+  background: var(--color-gf-red-light);
 }
 
 /* Firefox scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-gf-green) var(--color-gf-cream);
+  scrollbar-color: var(--color-gf-red) var(--color-gf-cream);
 }
 
 /* ───────────────────────────────────────
@@ -297,7 +298,7 @@ body {
    Gradient text utility
    ─────────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, var(--color-gf-green) 0%, var(--color-gf-green-light) 50%, var(--color-gf-gold) 100%);
+  background: linear-gradient(135deg, var(--color-gf-red) 0%, var(--color-gf-red-light) 50%, var(--color-gf-gold) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -358,7 +359,7 @@ body {
 }
 
 .wave-divider-green::before {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 48' preserveAspectRatio='none'%3E%3Cpath d='M0 48V16c200-24 400-8 600 8s400 32 600 8V48z' fill='%230f3d22'/%3E%3C/svg%3E") no-repeat center;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 48' preserveAspectRatio='none'%3E%3Cpath d='M0 48V16c200-24 400-8 600 8s400 32 600 8V48z' fill='%237f0000'/%3E%3C/svg%3E") no-repeat center;
   background-size: 100% 100%;
 }
 
@@ -368,10 +369,10 @@ body {
 .hero-gradient-bg {
   background: linear-gradient(
     -45deg,
-    var(--color-gf-green-dark),
-    var(--color-gf-green),
-    var(--color-gf-green-dark),
-    #0d2e1a
+    var(--color-gf-red-dark),
+    var(--color-gf-red),
+    var(--color-gf-red-dark),
+    #3a0000
   );
   background-size: 400% 400%;
   animation: heroGradient 12s ease infinite;

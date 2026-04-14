@@ -108,7 +108,7 @@ function ConfettiDots() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       {Array.from({ length: 30 }, (_, i) => {
-        const colors = ["bg-gf-gold", "bg-gf-green", "bg-gf-gold-light", "bg-gf-green-light", "bg-gf-red"];
+        const colors = ["bg-gf-gold", "bg-gf-red", "bg-gf-gold-light", "bg-gf-red-light", "bg-gf-red"];
         const color = colors[i % colors.length];
         const size = 4 + Math.random() * 6;
         const left = Math.random() * 100;
@@ -160,7 +160,7 @@ function ProgressBar({ step }: { step: number }) {
                     completed
                       ? "border-gf-gold bg-gf-gold text-white shadow-md shadow-gf-gold/30"
                       : current
-                      ? "border-gf-green bg-gf-green text-white shadow-md shadow-gf-green/30"
+                      ? "border-gf-red bg-gf-red text-white shadow-md shadow-gf-red/30"
                       : "border-gray-300 bg-white text-gf-gray"
                   }`}
                 >
@@ -168,7 +168,7 @@ function ProgressBar({ step }: { step: number }) {
                 </div>
                 <span
                   className={`mt-2 text-xs font-semibold transition-colors duration-300 ${
-                    completed ? "text-gf-gold" : current ? "text-gf-green" : "text-gf-gray"
+                    completed ? "text-gf-gold" : current ? "text-gf-red" : "text-gf-gray"
                   }`}
                 >
                   {label}
@@ -293,7 +293,7 @@ function Step1({
               appearance: none;
               height: 8px;
               border-radius: 9999px;
-              background: linear-gradient(to right, var(--color-gf-green), var(--color-gf-green-light));
+              background: linear-gradient(to right, var(--color-gf-red), var(--color-gf-red-light));
               outline: none;
             }
             .slider-custom::-webkit-slider-thumb {
@@ -598,7 +598,7 @@ function Step4({
 
       {/* Price card */}
       <div
-        className={`relative overflow-hidden rounded-2xl border-2 border-gf-gold/30 bg-gradient-to-br from-gf-green via-gf-green to-gf-green-dark p-10 text-center text-white shadow-xl transition-all duration-700 ${
+        className={`relative overflow-hidden rounded-2xl border-2 border-gf-gold/30 bg-gradient-to-br from-gf-red via-gf-red to-gf-red-dark p-10 text-center text-white shadow-xl transition-all duration-700 ${
           visible ? "translate-y-0 opacity-100 scale-100" : "translate-y-4 opacity-0 scale-95"
         }`}
       >
@@ -631,8 +631,8 @@ function Step4({
         <p className="mb-3 font-semibold text-gf-charcoal">What&apos;s Included:</p>
         <ul className="grid gap-3 sm:grid-cols-2">
           {included.map((item) => (
-            <li key={item} className="flex items-center gap-3 rounded-lg bg-gf-green/5 px-4 py-3 text-gf-charcoal">
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gf-green">
+            <li key={item} className="flex items-center gap-3 rounded-lg bg-gf-red/5 px-4 py-3 text-gf-charcoal">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gf-red">
                 <CheckIcon className="h-3.5 w-3.5 text-white" />
               </span>
               <span className="font-medium">{item}</span>
@@ -655,7 +655,7 @@ function Step4({
               required
               value={data.name}
               onChange={(e) => onChange({ name: e.target.value })}
-              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal placeholder:text-gf-gray/60 transition-all duration-300 focus:border-gf-green focus:ring-4 focus:ring-gf-green/10 focus:outline-none"
+              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal placeholder:text-gf-gray/60 transition-all duration-300 focus:border-gf-red focus:ring-4 focus:ring-gf-red/10 focus:outline-none"
               placeholder="John Smith"
             />
           </div>
@@ -670,7 +670,7 @@ function Step4({
               required
               value={data.email}
               onChange={(e) => onChange({ email: e.target.value })}
-              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal placeholder:text-gf-gray/60 transition-all duration-300 focus:border-gf-green focus:ring-4 focus:ring-gf-green/10 focus:outline-none"
+              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal placeholder:text-gf-gray/60 transition-all duration-300 focus:border-gf-red focus:ring-4 focus:ring-gf-red/10 focus:outline-none"
               placeholder="john@example.com"
             />
           </div>
@@ -685,7 +685,7 @@ function Step4({
               required
               value={data.phone}
               onChange={(e) => onChange({ phone: e.target.value })}
-              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal placeholder:text-gf-gray/60 transition-all duration-300 focus:border-gf-green focus:ring-4 focus:ring-gf-green/10 focus:outline-none"
+              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal placeholder:text-gf-gray/60 transition-all duration-300 focus:border-gf-red focus:ring-4 focus:ring-gf-red/10 focus:outline-none"
               placeholder="(555) 123-4567"
             />
           </div>
@@ -699,7 +699,7 @@ function Step4({
               required
               value={data.serviceArea}
               onChange={(e) => onChange({ serviceArea: e.target.value as ServiceArea })}
-              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal transition-all duration-300 focus:border-gf-green focus:ring-4 focus:ring-gf-green/10 focus:outline-none"
+              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal transition-all duration-300 focus:border-gf-red focus:ring-4 focus:ring-gf-red/10 focus:outline-none"
             >
               <option value="">Select your area</option>
               <option value="lake-norman">Lake Norman</option>
@@ -719,7 +719,7 @@ function Step4({
               required
               value={data.address}
               onChange={(e) => onChange({ address: e.target.value })}
-              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal placeholder:text-gf-gray/60 transition-all duration-300 focus:border-gf-green focus:ring-4 focus:ring-gf-green/10 focus:outline-none"
+              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal placeholder:text-gf-gray/60 transition-all duration-300 focus:border-gf-red focus:ring-4 focus:ring-gf-red/10 focus:outline-none"
               placeholder="123 Main St, Mooresville, NC 28117"
             />
           </div>
@@ -732,7 +732,7 @@ function Step4({
               id="quote-contact-method"
               value={data.contactMethod}
               onChange={(e) => onChange({ contactMethod: e.target.value as ContactMethod })}
-              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal transition-all duration-300 focus:border-gf-green focus:ring-4 focus:ring-gf-green/10 focus:outline-none"
+              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal transition-all duration-300 focus:border-gf-red focus:ring-4 focus:ring-gf-red/10 focus:outline-none"
             >
               <option value="">No preference</option>
               <option value="phone">Phone call</option>
@@ -750,7 +750,7 @@ function Step4({
               rows={3}
               value={data.message}
               onChange={(e) => onChange({ message: e.target.value })}
-              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal placeholder:text-gf-gray/60 transition-all duration-300 focus:border-gf-green focus:ring-4 focus:ring-gf-green/10 focus:outline-none"
+              className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-gf-charcoal placeholder:text-gf-gray/60 transition-all duration-300 focus:border-gf-red focus:ring-4 focus:ring-gf-red/10 focus:outline-none"
               placeholder="Anything else we should know?"
             />
           </div>
@@ -839,7 +839,7 @@ export default function QuoteEstimator() {
         <ConfettiDots />
 
         <div className="relative">
-          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-gf-green to-gf-green-light shadow-lg shadow-gf-green/20" style={{ animation: "scaleIn 0.5s ease-out" }}>
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-gf-red to-gf-red-light shadow-lg shadow-gf-red/20" style={{ animation: "scaleIn 0.5s ease-out" }}>
             <CheckIcon className="h-10 w-10 text-white" />
           </div>
           <style>{`
@@ -857,14 +857,14 @@ export default function QuoteEstimator() {
 
           <div className="mx-auto mt-6 inline-block rounded-2xl border-2 border-gf-gold/30 bg-gradient-to-br from-gf-warm-white to-white px-8 py-4 shadow-md">
             <p className="text-sm font-semibold uppercase tracking-wider text-gf-gold">Your Estimate</p>
-            <p className="mt-1 text-3xl font-bold text-gf-green">
+            <p className="mt-1 text-3xl font-bold text-gf-red">
               ${estimate.low.toLocaleString()} &ndash; ${estimate.high.toLocaleString()}
             </p>
           </div>
 
           <p className="mt-8 text-sm text-gf-gray">
             Have questions? Call us at{" "}
-            <a href="tel:+18772741475" className="font-bold text-gf-green transition-colors hover:text-gf-green-light hover:underline">
+            <a href="tel:+18772741475" className="font-bold text-gf-red transition-colors hover:text-gf-red-light hover:underline">
               (877) 274-1475
             </a>
           </p>

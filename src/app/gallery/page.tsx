@@ -17,7 +17,7 @@ export default function GalleryPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-b from-gf-green-dark to-gf-green px-4 py-16 text-center lg:py-20">
+      <section className="bg-gradient-to-b from-gf-red-dark to-gf-red px-4 py-16 text-center lg:py-20">
         <div className="mx-auto max-w-3xl">
           <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
             Our Work Speaks for Itself

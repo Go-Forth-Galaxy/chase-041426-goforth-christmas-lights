@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import CTABanner from "@/components/CTABanner";
 import TestimonialCard from "@/components/TestimonialCard";
 import AvailabilityBadge from "@/components/AvailabilityBadge";
@@ -59,8 +60,19 @@ export default function HickoryPage() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative bg-gf-green-dark px-4 py-20 sm:py-28">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--color-gf-green-light)_0%,_transparent_50%)] opacity-20" />
+      <section className="relative bg-gf-red-dark px-4 py-20 sm:py-28 overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/service-areas/hickory.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+        </div>
+        <div className="absolute inset-0 bg-gf-red-dark/70" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--color-gf-red-light)_0%,_transparent_50%)] opacity-20" />
         <div className="relative mx-auto max-w-4xl text-center">
           <h1 className="font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
             Christmas Light Installation in the{" "}
@@ -115,7 +127,7 @@ export default function HickoryPage() {
                 key={reason.title}
                 className="rounded-xl border border-gf-gray-light bg-gf-cream p-8 transition-shadow hover:shadow-md"
               >
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-gf-green text-white">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-gf-red text-white">
                   {reason.icon}
                 </div>
                 <h3 className="text-xl font-bold text-gf-charcoal">
@@ -144,7 +156,7 @@ export default function HickoryPage() {
             {neighborhoods.map((name) => (
               <span
                 key={name}
-                className="rounded-full border border-gf-green/20 bg-white px-5 py-2.5 text-sm font-semibold text-gf-green shadow-sm"
+                className="rounded-full border border-gf-red/20 bg-white px-5 py-2.5 text-sm font-semibold text-gf-red shadow-sm"
               >
                 {name}
               </span>

@@ -91,13 +91,13 @@ export default function PrivacyPage() {
         <ul>
           <li>
             <strong>Email:</strong>{" "}
-            <a href="mailto:lights@go-forth.com" className="text-gf-green hover:underline">
+            <a href="mailto:lights@go-forth.com" className="text-gf-red hover:underline">
               lights@go-forth.com
             </a>
           </li>
           <li>
             <strong>Phone:</strong>{" "}
-            <a href="tel:+18772741475" className="text-gf-green hover:underline">
+            <a href="tel:+18772741475" className="text-gf-red hover:underline">
               (877) 274-1475
             </a>
           </li>

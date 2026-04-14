@@ -130,7 +130,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         <span className="text-lg font-semibold text-gf-charcoal pr-4">{question}</span>
         <span
           className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
-            open ? "bg-gf-green text-white rotate-180" : "bg-gf-gray-light text-gf-gray"
+            open ? "bg-gf-red text-white rotate-180" : "bg-gf-gray-light text-gf-gray"
           }`}
         >
           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
@@ -164,7 +164,7 @@ export default function PricingPage() {
       {/* Hero */}
       <section
         aria-label="Pricing hero"
-        className="relative overflow-hidden bg-gradient-to-br from-gf-green-dark via-gf-green to-gf-green-light px-6 py-24 text-center sm:py-32"
+        className="relative overflow-hidden bg-gradient-to-br from-gf-red-dark via-gf-red to-gf-red-light px-6 py-24 text-center sm:py-32"
       >
         {/* Decorative snowflakes */}
         <Snowflake className="absolute left-[8%] top-[15%] h-8 w-8 text-white/[0.07] animate-pulse" />
@@ -240,7 +240,7 @@ export default function PricingPage() {
                 className={`group relative flex flex-col rounded-2xl border-2 p-8 transition-all duration-300 hover:-translate-y-1 ${
                   pkg.highlighted
                     ? "z-10 border-gf-gold bg-gradient-to-b from-gf-warm-white to-white shadow-xl shadow-gf-gold/15 md:-my-4 md:p-10"
-                    : "border-gray-200 bg-white shadow-sm hover:shadow-lg hover:border-gf-green/30"
+                    : "border-gray-200 bg-white shadow-sm hover:shadow-lg hover:border-gf-red/30"
                 }`}
               >
                 {pkg.highlighted && (
@@ -258,7 +258,7 @@ export default function PricingPage() {
                     {pkg.name}
                   </h3>
                   <p className="mt-2 text-sm text-gf-gray">Starting at</p>
-                  <p className={`text-4xl font-bold ${pkg.highlighted ? "text-gf-gold" : "text-gf-green"} sm:text-5xl`}>
+                  <p className={`text-4xl font-bold ${pkg.highlighted ? "text-gf-gold" : "text-gf-red"} sm:text-5xl`}>
                     {pkg.price}
                   </p>
                 </div>
@@ -273,7 +273,7 @@ export default function PricingPage() {
                       className="group/item flex items-start gap-3 text-gf-charcoal"
                     >
                       <span className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full transition-transform duration-300 group-hover/item:scale-110 ${
-                        pkg.highlighted ? "bg-gf-gold/10 text-gf-gold" : "bg-gf-green/10 text-gf-green"
+                        pkg.highlighted ? "bg-gf-gold/10 text-gf-gold" : "bg-gf-red/10 text-gf-red"
                       }`}>
                         <CheckIcon className="h-3 w-3" />
                       </span>
@@ -291,7 +291,7 @@ export default function PricingPage() {
                   className={`block rounded-xl px-6 py-3.5 text-center font-bold transition-all duration-300 hover:-translate-y-0.5 ${
                     pkg.highlighted
                       ? "bg-gradient-to-r from-gf-gold to-gf-gold-light text-white shadow-lg shadow-gf-gold/25 hover:shadow-xl hover:shadow-gf-gold/30"
-                      : "bg-gf-green text-white shadow-md hover:bg-gf-green-light hover:shadow-lg"
+                      : "bg-gf-red text-white shadow-md hover:bg-gf-red-light hover:shadow-lg"
                   }`}
                 >
                   {pkg.cta}
@@ -330,7 +330,7 @@ export default function PricingPage() {
           <div className="mt-10 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md">
             <table className="w-full text-left">
               <thead>
-                <tr className="bg-gradient-to-r from-gf-green to-gf-green-light">
+                <tr className="bg-gradient-to-r from-gf-red to-gf-red-light">
                   <th className="px-6 py-4 text-sm font-bold uppercase tracking-wider text-white">
                     Service
                   </th>
@@ -343,14 +343,14 @@ export default function PricingPage() {
                 {additionalServices.map((item, i) => (
                   <tr
                     key={item.service}
-                    className={`border-b border-gray-100 transition-colors duration-200 hover:bg-gf-green/[0.03] ${
-                      i % 2 === 0 ? "bg-white" : "bg-gf-green/[0.02]"
+                    className={`border-b border-gray-100 transition-colors duration-200 hover:bg-gf-red/[0.03] ${
+                      i % 2 === 0 ? "bg-white" : "bg-gf-red/[0.02]"
                     }`}
                   >
                     <td className="px-6 py-4 font-medium text-gf-charcoal">
                       {item.service}
                     </td>
-                    <td className="px-6 py-4 text-right font-bold text-gf-green">
+                    <td className="px-6 py-4 text-right font-bold text-gf-red">
                       {item.price}
                     </td>
                   </tr>
@@ -398,7 +398,7 @@ export default function PricingPage() {
       />
 
       {/* Extra CTA links */}
-      <section className="bg-gf-green-dark px-6 py-8">
+      <section className="bg-gf-red-dark px-6 py-8">
         <div className="mx-auto flex max-w-2xl flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href="/style-quiz"

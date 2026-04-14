@@ -20,10 +20,10 @@ export default function AvailabilityBadge({
       {/* Header with live indicator */}
       <div className="flex items-center gap-2.5">
         <span className="relative flex h-3 w-3" aria-hidden="true">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gf-green-light opacity-75" />
-          <span className="relative inline-flex h-3 w-3 rounded-full bg-gf-green shadow-sm" />
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gf-red-light opacity-75" />
+          <span className="relative inline-flex h-3 w-3 rounded-full bg-gf-red shadow-sm" />
         </span>
-        <span className="text-xs font-semibold tracking-wider text-gf-green uppercase">
+        <span className="text-xs font-semibold tracking-wider text-gf-red uppercase">
           Live Availability
         </span>
       </div>
@@ -31,7 +31,7 @@ export default function AvailabilityBadge({
       {/* Text */}
       <p className="text-sm text-gf-charcoal leading-relaxed">
         We&apos;re{" "}
-        <span className="text-lg font-extrabold text-gf-green">{percentBooked}%</span>{" "}
+        <span className="text-lg font-extrabold text-gf-red">{percentBooked}%</span>{" "}
         booked for the season
         {area && <span className="text-gf-gray"> in {area}</span>}
         {" "}&mdash;{" "}
@@ -47,7 +47,7 @@ export default function AvailabilityBadge({
         aria-valuemax={100}
       >
         <div
-          className="relative h-full rounded-full bg-gradient-to-r from-gf-green to-gf-green-light transition-all duration-700 ease-out overflow-hidden"
+          className="relative h-full rounded-full bg-gradient-to-r from-gf-red to-gf-red-light transition-all duration-700 ease-out overflow-hidden"
           style={{ width: `${percentBooked}%` }}
         >
           {/* Shimmer overlay */}

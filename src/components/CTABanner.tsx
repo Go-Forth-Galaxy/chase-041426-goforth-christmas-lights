@@ -23,7 +23,7 @@ export default function CTABanner({
       </svg>
 
       {/* Background with gradient */}
-      <div className="bg-gradient-to-br from-gf-green-dark via-gf-green to-gf-green-dark py-20 pt-28 sm:pt-32 relative">
+      <div className="bg-gradient-to-br from-gf-red-dark via-gf-red to-gf-red-dark py-20 pt-28 sm:pt-32 relative">
         {/* Radial glow */}
         <div
           className="pointer-events-none absolute inset-0"
@@ -56,13 +56,13 @@ export default function CTABanner({
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/quote"
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-gf-gold text-white shadow-lg hover:bg-gf-gold-light hover:text-gf-charcoal transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gf-gold focus:ring-offset-2 focus:ring-offset-gf-green animate-[glow-pulse_2s_ease-in-out_infinite]"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-gf-gold text-white shadow-lg hover:bg-gf-gold-light hover:text-gf-charcoal transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gf-gold focus:ring-offset-2 focus:ring-offset-gf-red animate-[glow-pulse_2s_ease-in-out_infinite]"
             >
               Get Your Free Quote
             </Link>
             <a
               href="tel:+18772741475"
-              className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg border-2 border-white/80 text-white overflow-hidden transition-all duration-300 hover:bg-white hover:text-gf-green hover:border-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gf-green"
+              className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg border-2 border-white/80 text-white overflow-hidden transition-all duration-300 hover:bg-white hover:text-gf-red hover:border-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gf-red"
             >
               {/* Shimmer effect */}
               <span className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />

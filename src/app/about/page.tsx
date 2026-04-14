@@ -119,7 +119,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section
         aria-label="About hero"
-        className="bg-gradient-to-br from-gf-green-dark via-gf-green to-gf-green-light px-6 py-20 text-center sm:py-28"
+        className="bg-gradient-to-br from-gf-red-dark via-gf-red to-gf-red-light px-6 py-20 text-center sm:py-28"
       >
         <div className="mx-auto max-w-3xl">
           <h1 className="font-[family-name:var(--font-display)] text-4xl font-bold text-white sm:text-5xl">
@@ -138,7 +138,9 @@ export default function AboutPage() {
         aria-labelledby="story-heading"
         className="bg-white px-6 py-20"
       >
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-start">
+          <div className="max-w-3xl">
           <h2
             id="story-heading"
             className="font-[family-name:var(--font-display)] text-3xl font-bold text-gf-charcoal sm:text-4xl"
@@ -175,6 +177,30 @@ export default function AboutPage() {
               still guided by the values Frank and Johnie built the company on
               more than six decades ago.
             </p>
+          </div>
+          </div>
+
+          {/* Team photo */}
+          <div className="relative hidden lg:block w-72 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg">
+            <Image
+              src="/images/about/team.jpg"
+              alt="The Go-Forth Christmas Lights team"
+              width={288}
+              height={384}
+              className="object-cover w-full h-full"
+            />
+          </div>
+          </div>
+
+          {/* Team photo (mobile) */}
+          <div className="relative mt-10 lg:hidden overflow-hidden rounded-2xl shadow-lg">
+            <Image
+              src="/images/about/team.jpg"
+              alt="The Go-Forth Christmas Lights team"
+              width={800}
+              height={500}
+              className="object-cover w-full"
+            />
           </div>
         </div>
       </section>
@@ -238,6 +264,17 @@ export default function AboutPage() {
               when our neighbors need us. That&rsquo;s not marketing. That&rsquo;s
               just how the Goforth family does business.
             </p>
+          </div>
+
+          {/* Installation photo */}
+          <div className="relative mt-10 overflow-hidden rounded-2xl shadow-lg">
+            <Image
+              src="/images/about/installation.jpg"
+              alt="Go-Forth crew installing Christmas lights on a home"
+              width={800}
+              height={450}
+              className="object-cover w-full"
+            />
           </div>
         </div>
       </section>

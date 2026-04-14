@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Christmas Light Installation Service Areas | Go-Forth",
@@ -15,6 +16,7 @@ const areas = [
     description:
       "From lakefront estates to charming neighborhoods, we bring holiday magic to the Lake Norman area.",
     href: "/service-areas/lake-norman",
+    image: "/images/service-areas/lake-norman.jpg",
   },
   {
     name: "Triad",
@@ -22,6 +24,7 @@ const areas = [
     description:
       "Our home territory since 1959. Professional holiday lighting for the Triad's finest homes and businesses.",
     href: "/service-areas/triad",
+    image: "/images/service-areas/triad.jpg",
   },
   {
     name: "Hickory",
@@ -29,6 +32,7 @@ const areas = [
     description:
       "Bringing professional Christmas light installation to the Catawba Valley and surrounding foothills.",
     href: "/service-areas/hickory",
+    image: "/images/service-areas/hickory.jpg",
   },
   {
     name: "Boone / High Country",
@@ -36,6 +40,7 @@ const areas = [
     description:
       "Holiday lights that shine bright in the High Country. Mountain homes deserve mountain-grade installation.",
     href: "/service-areas/boone",
+    image: "/images/service-areas/boone.jpg",
   },
 ];
 
@@ -43,7 +48,7 @@ export default function ServiceAreasPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-gf-green-dark via-gf-green to-gf-green-light py-20">
+      <section className="bg-gradient-to-br from-gf-red-dark via-gf-red to-gf-red-light py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-white font-[family-name:var(--font-display)]">
             Our Service Areas
@@ -63,18 +68,31 @@ export default function ServiceAreasPage() {
               <Link
                 key={area.name}
                 href={area.href}
-                className="group block rounded-xl border border-gray-200 bg-white p-8 shadow-sm hover:shadow-md hover:border-gf-green/30 transition-all duration-200"
+                className="group block rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md hover:border-gf-red/30 transition-all duration-200 overflow-hidden"
               >
-                <h2 className="text-2xl font-bold text-gf-green font-[family-name:var(--font-display)] group-hover:text-gf-green-dark transition-colors">
-                  {area.name}
-                </h2>
-                <p className="mt-2 text-sm font-medium text-gf-gold tracking-wide uppercase">
-                  {area.cities.join(", ")}
-                </p>
-                <p className="mt-4 text-gf-gray leading-relaxed">{area.description}</p>
-                <span className="mt-5 inline-flex items-center text-sm font-medium text-gf-green group-hover:translate-x-1 transition-transform duration-200">
-                  Learn More &rarr;
-                </span>
+                {/* Area image */}
+                <div className="relative h-48 w-full overflow-hidden">
+                  <Image
+                    src={area.image}
+                    alt={`Christmas lights in ${area.name}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
+                <div className="p-8">
+                  <h2 className="text-2xl font-bold text-gf-red font-[family-name:var(--font-display)] group-hover:text-gf-red-dark transition-colors">
+                    {area.name}
+                  </h2>
+                  <p className="mt-2 text-sm font-medium text-gf-gold tracking-wide uppercase">
+                    {area.cities.join(", ")}
+                  </p>
+                  <p className="mt-4 text-gf-gray leading-relaxed">{area.description}</p>
+                  <span className="mt-5 inline-flex items-center text-sm font-medium text-gf-red group-hover:translate-x-1 transition-transform duration-200">
+                    Learn More &rarr;
+                  </span>
+                </div>
               </Link>
             ))}
           </div>

@@ -70,13 +70,13 @@ export default function ContactForm() {
   if (submitted) {
     return (
       <div
-        className={`rounded-2xl border-2 border-gf-green/20 bg-gradient-to-b from-gf-warm-white to-white p-12 text-center shadow-lg transition-all duration-700 ${
+        className={`rounded-2xl border-2 border-gf-red/20 bg-gradient-to-b from-gf-warm-white to-white p-12 text-center shadow-lg transition-all duration-700 ${
           successVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-4 opacity-0 scale-95"
         }`}
         role="status"
       >
         <div
-          className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-gf-green to-gf-green-light shadow-lg shadow-gf-green/20"
+          className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-gf-red to-gf-red-light shadow-lg shadow-gf-red/20"
           style={{ animation: "scaleInCheck 0.5s ease-out" }}
         >
           <CheckIcon className="h-10 w-10 text-white" />
@@ -97,14 +97,14 @@ export default function ContactForm() {
         <div className="mx-auto mt-6 h-px w-16 bg-gradient-to-r from-transparent via-gf-gold to-transparent" />
         <p className="mt-4 text-sm text-gf-gray">
           Have an urgent question? Call us at{" "}
-          <a href="tel:+18772741475" className="font-bold text-gf-green hover:underline">(877) 274-1475</a>
+          <a href="tel:+18772741475" className="font-bold text-gf-red hover:underline">(877) 274-1475</a>
         </p>
       </div>
     );
   }
 
   const inputBaseClass =
-    "w-full border-0 border-b-2 bg-transparent px-0 py-3 text-gf-charcoal transition-all duration-300 placeholder:text-gf-gray/50 focus:border-gf-green focus:ring-0 focus:outline-none";
+    "w-full border-0 border-b-2 bg-transparent px-0 py-3 text-gf-charcoal transition-all duration-300 placeholder:text-gf-gray/50 focus:border-gf-red focus:ring-0 focus:outline-none";
   const inputNormalBorder = "border-gray-300";
   const inputErrorBorder = "border-gf-red";
 
@@ -297,14 +297,14 @@ export default function ContactForm() {
           {CONTACT_METHODS.map((method) => (
             <label
               key={method}
-              className="group flex cursor-pointer items-center gap-2.5 rounded-xl border-2 border-gray-200 px-4 py-2.5 text-sm font-semibold text-gf-charcoal transition-all duration-300 hover:border-gf-green/40 hover:bg-gf-green/5 has-[:checked]:border-gf-green has-[:checked]:bg-gf-green/5"
+              className="group flex cursor-pointer items-center gap-2.5 rounded-xl border-2 border-gray-200 px-4 py-2.5 text-sm font-semibold text-gf-charcoal transition-all duration-300 hover:border-gf-red/40 hover:bg-gf-red/5 has-[:checked]:border-gf-red has-[:checked]:bg-gf-red/5"
             >
               <input
                 type="radio"
                 name="contactMethod"
                 value={method}
                 defaultChecked={method === "Phone"}
-                className="h-4 w-4 border-gray-300 text-gf-green focus:ring-gf-green"
+                className="h-4 w-4 border-gray-300 text-gf-red focus:ring-gf-red"
               />
               {method}
             </label>

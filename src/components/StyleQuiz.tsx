@@ -78,10 +78,10 @@ const questions: QuizQuestion[] = [
 ];
 
 const gradientBgs = [
-  "from-gf-green-dark/5 via-white to-gf-cream",
-  "from-gf-cream via-white to-gf-green-dark/5",
-  "from-gf-warm-white via-white to-gf-green/5",
-  "from-gf-green/5 via-white to-gf-warm-white",
+  "from-gf-red-dark/5 via-white to-gf-cream",
+  "from-gf-cream via-white to-gf-red-dark/5",
+  "from-gf-warm-white via-white to-gf-red/5",
+  "from-gf-red/5 via-white to-gf-warm-white",
 ];
 
 /* ------------------------------------------------------------------ */
@@ -159,7 +159,7 @@ function QuizProgress({ current, total }: { current: number; total: number }) {
                 i < current
                   ? "w-full bg-gradient-to-r from-gf-gold to-gf-gold-light"
                   : i === current
-                  ? "w-1/2 bg-gradient-to-r from-gf-green to-gf-green-light opacity-50"
+                  ? "w-1/2 bg-gradient-to-r from-gf-red to-gf-red-light opacity-50"
                   : "w-0"
               }`}
             />
@@ -191,14 +191,14 @@ function ResultScreen({ pkg, answers }: { pkg: PackageResult; answers: Record<st
   }, []);
 
   const tierColors: Record<PackageTier, string> = {
-    basic: "from-gf-green to-gf-green-light",
-    premium: "from-gf-green-dark to-gf-green",
+    basic: "from-gf-red to-gf-red-light",
+    premium: "from-gf-red-dark to-gf-red",
     showstopper: "from-gf-gold to-gf-gold-light",
   };
 
   const tierAccents: Record<PackageTier, string> = {
-    basic: "border-gf-green/30",
-    premium: "border-gf-green/30",
+    basic: "border-gf-red/30",
+    premium: "border-gf-red/30",
     showstopper: "border-gf-gold/40",
   };
 
@@ -262,7 +262,7 @@ function ResultScreen({ pkg, answers }: { pkg: PackageResult; answers: Record<st
         </Link>
         <a
           href="tel:+18772741475"
-          className="inline-flex items-center gap-2 text-gf-gray transition-colors hover:text-gf-green"
+          className="inline-flex items-center gap-2 text-gf-gray transition-colors hover:text-gf-red"
         >
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />

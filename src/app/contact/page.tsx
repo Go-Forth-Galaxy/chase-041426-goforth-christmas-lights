@@ -14,7 +14,7 @@ export default function ContactPage() {
       {/* Hero */}
       <section
         aria-label="Contact hero"
-        className="bg-gradient-to-br from-gf-green-dark via-gf-green to-gf-green-light px-6 py-16 text-center sm:py-20"
+        className="bg-gradient-to-br from-gf-red-dark via-gf-red to-gf-red-light px-6 py-16 text-center sm:py-20"
       >
         <div className="mx-auto max-w-3xl">
           <h1 className="font-[family-name:var(--font-display)] text-4xl font-bold text-white sm:text-5xl">
@@ -47,7 +47,7 @@ export default function ContactPage() {
                 {/* Main Phone */}
                 <div className="flex items-start gap-3">
                   <svg
-                    className="mt-0.5 h-6 w-6 shrink-0 text-gf-green"
+                    className="mt-0.5 h-6 w-6 shrink-0 text-gf-red"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -66,7 +66,7 @@ export default function ContactPage() {
                     </p>
                     <a
                       href="tel:+18772741475"
-                      className="text-lg font-bold text-gf-green hover:text-gf-green-light transition-colors"
+                      className="text-lg font-bold text-gf-red hover:text-gf-red-light transition-colors"
                     >
                       (877) 274-1475
                     </a>
@@ -76,7 +76,7 @@ export default function ContactPage() {
                 {/* Lake Norman Phone */}
                 <div className="flex items-start gap-3">
                   <svg
-                    className="mt-0.5 h-6 w-6 shrink-0 text-gf-green"
+                    className="mt-0.5 h-6 w-6 shrink-0 text-gf-red"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -95,7 +95,7 @@ export default function ContactPage() {
                     </p>
                     <a
                       href="tel:+17046636440"
-                      className="text-lg font-bold text-gf-green hover:text-gf-green-light transition-colors"
+                      className="text-lg font-bold text-gf-red hover:text-gf-red-light transition-colors"
                     >
                       (704) 663-6440
                     </a>
@@ -105,7 +105,7 @@ export default function ContactPage() {
                 {/* Email */}
                 <div className="flex items-start gap-3">
                   <svg
-                    className="mt-0.5 h-6 w-6 shrink-0 text-gf-green"
+                    className="mt-0.5 h-6 w-6 shrink-0 text-gf-red"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -124,7 +124,7 @@ export default function ContactPage() {
                     </p>
                     <a
                       href="mailto:lights@go-forth.com"
-                      className="text-lg font-bold text-gf-green hover:text-gf-green-light transition-colors"
+                      className="text-lg font-bold text-gf-red hover:text-gf-red-light transition-colors"
                     >
                       lights@go-forth.com
                     </a>
@@ -134,7 +134,7 @@ export default function ContactPage() {
                 {/* Locations */}
                 <div className="flex items-start gap-3">
                   <svg
-                    className="mt-0.5 h-6 w-6 shrink-0 text-gf-green"
+                    className="mt-0.5 h-6 w-6 shrink-0 text-gf-red"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -169,7 +169,7 @@ export default function ContactPage() {
                 {/* Hours */}
                 <div className="flex items-start gap-3">
                   <svg
-                    className="mt-0.5 h-6 w-6 shrink-0 text-gf-green"
+                    className="mt-0.5 h-6 w-6 shrink-0 text-gf-red"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -201,7 +201,7 @@ export default function ContactPage() {
               <div className="mt-4 flex flex-col gap-3">
                 <Link
                   href="/quote"
-                  className="inline-flex items-center gap-2 text-gf-green font-semibold hover:text-gf-green-light transition-colors"
+                  className="inline-flex items-center gap-2 text-gf-red font-semibold hover:text-gf-red-light transition-colors"
                 >
                   <svg
                     className="h-5 w-5"
@@ -221,7 +221,7 @@ export default function ContactPage() {
                 </Link>
                 <Link
                   href="/style-quiz"
-                  className="inline-flex items-center gap-2 text-gf-green font-semibold hover:text-gf-green-light transition-colors"
+                  className="inline-flex items-center gap-2 text-gf-red font-semibold hover:text-gf-red-light transition-colors"
                 >
                   <svg
                     className="h-5 w-5"

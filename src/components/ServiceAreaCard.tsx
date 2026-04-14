@@ -39,7 +39,7 @@ export default function ServiceAreaCard({ name, cities, description, href, image
 
       <div className="relative p-6">
         {/* Hover background tint */}
-        <div className="pointer-events-none absolute inset-0 rounded-b-xl bg-gradient-to-br from-gf-green/0 to-gf-green/0 group-hover:from-gf-green/[0.02] group-hover:to-gf-gold/[0.03] transition-all duration-300" />
+        <div className="pointer-events-none absolute inset-0 rounded-b-xl bg-gradient-to-br from-gf-red/0 to-gf-red/0 group-hover:from-gf-red/[0.02] group-hover:to-gf-gold/[0.03] transition-all duration-300" />
 
         {/* Map pin icon */}
         <svg
@@ -52,7 +52,7 @@ export default function ServiceAreaCard({ name, cities, description, href, image
         </svg>
 
         <div className="relative">
-          <h3 className="text-xl font-bold text-gf-green font-[family-name:var(--font-display)] group-hover:text-gf-green-dark transition-colors">
+          <h3 className="text-xl font-bold text-gf-red font-[family-name:var(--font-display)] group-hover:text-gf-red-dark transition-colors">
             {name}
           </h3>
 
@@ -70,7 +70,7 @@ export default function ServiceAreaCard({ name, cities, description, href, image
 
           <p className="mt-3 text-sm text-gf-gray leading-relaxed">{description}</p>
 
-          <span className="mt-5 inline-flex items-center text-sm font-semibold text-gf-green group-hover:text-gf-gold group-hover:translate-x-1.5 transition-all duration-300">
+          <span className="mt-5 inline-flex items-center text-sm font-semibold text-gf-red group-hover:text-gf-gold group-hover:translate-x-1.5 transition-all duration-300">
             Learn more
             <svg className="ml-1.5 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
