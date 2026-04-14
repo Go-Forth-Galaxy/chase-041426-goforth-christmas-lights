@@ -618,9 +618,15 @@ export default function Home() {
                 </svg>
               </Link>
             </div>
-            <div className="flex-shrink-0 text-center">
-              <div className="inline-flex items-center justify-center w-28 h-28 rounded-full bg-gf-cream">
-                <span className="text-6xl" aria-hidden="true">🎅</span>
+            <div className="flex-shrink-0">
+              <div className="relative w-36 h-36 rounded-2xl overflow-hidden shadow-lg">
+                <Image
+                  src={`${basePath}/images/inflatables/santa.jpg`}
+                  alt="Holiday inflatable Santa Claus"
+                  fill
+                  sizes="144px"
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>

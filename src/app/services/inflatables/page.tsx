@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import basePath from "@/lib/basePath";
 import CTABanner from "@/components/CTABanner";
 
 const inflatablePackages = [
@@ -55,32 +57,32 @@ const inflatableTypes = [
   {
     name: "Classic Characters",
     description: "Santa, Snowman, Rudolph, Frosty, and more timeless favorites.",
-    icon: "🎅",
+    image: `${basePath}/images/inflatables/santa.jpg`,
   },
   {
     name: "Snow Globes",
     description: "Animated snow globe inflatables with swirling snow effects.",
-    icon: "🔮",
+    image: `${basePath}/images/inflatables/snowglobe.jpg`,
   },
   {
     name: "Archways",
     description: "Walk-through candy cane arches and holiday-themed tunnels.",
-    icon: "🌈",
+    image: `${basePath}/images/inflatables/archway.jpg`,
   },
   {
-    name: "Nativity & Religious",
-    description: "Tasteful nativity scenes and faith-based holiday displays.",
-    icon: "⭐",
+    name: "Winter Wonderland Sets",
+    description: "Complete themed yard displays with multiple coordinated inflatables.",
+    image: `${basePath}/images/inflatables/wonderland.jpg`,
   },
   {
-    name: "Themed Collections",
-    description: "Matching sets like Santa's Workshop, North Pole Express, or Winter Village.",
-    icon: "🏘️",
+    name: "Professional Installation",
+    description: "Our trained crew handles delivery, setup, anchoring, and season-long maintenance.",
+    image: `${basePath}/images/inflatables/installation.jpg`,
   },
   {
-    name: "XL & Custom",
-    description: "Giant 12ft+ inflatables and custom-branded commercial pieces.",
-    icon: "🏔️",
+    name: "Full Holiday Packages",
+    description: "Combine inflatables with roofline lights, trees, and pathway lighting for the complete look.",
+    image: `${basePath}/images/inflatables/hero.jpg`,
   },
 ];
 
@@ -172,15 +174,26 @@ export default function InflatablesPage() {
       {/* Hero */}
       <section
         aria-label="Inflatables hero"
-        className="relative overflow-hidden bg-gradient-to-br from-gf-red-dark via-gf-red to-gf-red-light px-6 py-24 text-center sm:py-32"
+        className="relative overflow-hidden px-6 py-24 text-center sm:py-32 min-h-[500px] flex items-center justify-center"
       >
+        {/* Hero background image */}
+        <div aria-hidden="true" className="absolute inset-0">
+          <Image
+            src={`${basePath}/images/inflatables/hero.jpg`}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+        </div>
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-gf-red-dark/80 via-[#4a0000]/70 to-[#1a0000]/80" />
+
         <Snowflake className="absolute left-[8%] top-[15%] h-8 w-8 text-white/[0.07] animate-pulse" />
         <Snowflake className="absolute right-[12%] top-[25%] h-12 w-12 text-white/[0.05]" />
         <Snowflake className="absolute left-[20%] bottom-[20%] h-6 w-6 text-white/[0.08]" />
         <Snowflake className="absolute right-[25%] bottom-[15%] h-10 w-10 text-white/[0.06] animate-pulse" />
         <Snowflake className="absolute left-[50%] top-[10%] h-5 w-5 text-white/[0.07]" />
-
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/[0.03] to-transparent" />
 
         <div className="relative mx-auto max-w-3xl">
           <span className="inline-block text-sm font-semibold tracking-widest uppercase text-gf-gold mb-4">
@@ -243,13 +256,22 @@ export default function InflatablesPage() {
             {inflatableTypes.map((type) => (
               <div
                 key={type.name}
-                className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-gf-gold/30"
+                className="group rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-gf-gold/30"
               >
-                <span className="text-4xl block mb-4 transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
-                  {type.icon}
-                </span>
-                <h3 className="text-lg font-bold text-gf-charcoal">{type.name}</h3>
-                <p className="mt-2 text-sm text-gf-gray leading-relaxed">{type.description}</p>
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={type.image}
+                    alt={type.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  <h3 className="absolute bottom-3 left-4 text-lg font-bold text-white drop-shadow-lg">{type.name}</h3>
+                </div>
+                <div className="p-5">
+                  <p className="text-sm text-gf-gray leading-relaxed">{type.description}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -387,8 +409,19 @@ export default function InflatablesPage() {
       </section>
 
       {/* Bundle CTA */}
-      <section className="bg-gradient-to-r from-gf-red-dark to-gf-red px-6 py-16">
-        <div className="mx-auto max-w-3xl text-center">
+      <section className="relative overflow-hidden py-20">
+        <div aria-hidden="true" className="absolute inset-0">
+          <Image
+            src={`${basePath}/images/inflatables/wonderland.jpg`}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-gf-red-dark/90 to-gf-red/85" />
+
+        <div className="relative mx-auto max-w-3xl px-6 text-center">
           <h2 className="font-[family-name:var(--font-display)] text-3xl font-bold text-white sm:text-4xl">
             Bundle &amp; Save
           </h2>
