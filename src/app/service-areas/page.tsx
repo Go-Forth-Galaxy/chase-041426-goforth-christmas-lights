@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import basePath from "@/lib/basePath";
+import ServiceAreaMap from "@/components/ServiceAreaMap";
 
 export const metadata: Metadata = {
   title: "Christmas Light Installation Service Areas | Go-Forth",
@@ -99,6 +100,9 @@ export default function ServiceAreasPage() {
           </div>
         </div>
       </section>
+
+      {/* Interactive Map */}
+      <ServiceAreaMap />
 
       {/* CTA */}
       <section className="py-16 bg-gf-cream">
