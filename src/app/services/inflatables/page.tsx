@@ -12,7 +12,7 @@ const inflatablePackages = [
     price: "$299",
     highlighted: false,
     features: [
-      "1 large inflatable (up to 8 ft)",
+      "1 large inflatable (up to 8 ft tall)",
       "Professional placement & anchoring",
       "Timer setup for auto on/off",
       "Season-long maintenance",
@@ -29,7 +29,7 @@ const inflatablePackages = [
       "Everything in Starter, plus:",
       "Up to 3 inflatables (mixed sizes)",
       "Coordinated yard layout design",
-      "LED spotlight accents",
+      "LED spotlights to illuminate inflatables after dark",
       "Stakes, sandbags & all hardware",
       "Weather monitoring & re-inflation",
     ],
@@ -46,7 +46,7 @@ const inflatablePackages = [
       "Custom themed arrangement",
       "Pathway integration with inflatables",
       "Premium XL inflatables available (12ft+)",
-      "Priority scheduling & support",
+      "Priority scheduling — first in line for install dates and same-day maintenance",
     ],
     perfectFor: "Homes that want the ultimate holiday yard display",
     cta: "Get Wonderland Quote",
@@ -56,17 +56,17 @@ const inflatablePackages = [
 const inflatableTypes = [
   {
     name: "Classic Characters",
-    description: "Santa, Snowman, Rudolph, Frosty, and more timeless favorites.",
+    description: "Santa, snowmen, reindeer, and more holiday favorites.",
     image: `${basePath}/images/inflatables/santa.jpg`,
   },
   {
     name: "Snow Globes",
-    description: "Animated snow globe inflatables with swirling snow effects.",
+    description: "6–12 ft animated snow globes with built-in swirling snow effects and LED lighting.",
     image: `${basePath}/images/inflatables/snowglobe.jpg`,
   },
   {
     name: "Archways",
-    description: "Walk-through candy cane arches and holiday-themed tunnels.",
+    description: "Walk-through candy cane arches and holiday-themed tunnels. Perfect for driveways, walkways, or front yard entrances.",
     image: `${basePath}/images/inflatables/archway.jpg`,
   },
   {
@@ -88,9 +88,9 @@ const inflatableTypes = [
 
 const faqs = [
   {
-    question: "What happens if an inflatable deflates overnight?",
+    question: "Do inflatables stay inflated 24/7?",
     answer:
-      "Our inflatables are set on timers, so they deflate at night and re-inflate each evening automatically. If one fails to inflate, our maintenance team will address it — usually within 24 hours.",
+      "No — our inflatables run on timers, so they inflate each evening and deflate overnight automatically. If one ever fails to inflate, our maintenance team will address it — usually within 24 hours.",
   },
   {
     question: "Will inflatables damage my lawn?",
@@ -105,12 +105,12 @@ const faqs = [
   {
     question: "Do you provide the inflatables or do I need to buy them?",
     answer:
-      "We provide everything. Our commercial-grade inflatables are brighter, more durable, and larger than retail options. First-year pricing includes the inflatables; returning customers save 20–30%.",
+      "We own and maintain the inflatables. Our commercial-grade units are brighter, more durable, and larger than retail options. First-year pricing covers your custom set; returning customers save 20–30% since everything's already in storage.",
   },
   {
     question: "How do they hold up in wind and rain?",
     answer:
-      "Our commercial-grade inflatables are rated for winds up to 35 mph. In severe weather, our team may temporarily secure them. We monitor weather forecasts throughout the season.",
+      "Our commercial-grade inflatables are rated for winds up to 35 mph. In the rare event of severe weather (35+ mph winds, ice storms), our team proactively secures or temporarily removes units. We monitor weather forecasts throughout the season.",
   },
 ];
 
@@ -203,9 +203,8 @@ export default function InflatablesPage() {
             Holiday Inflatables
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
-            Bring your yard to life with professionally installed, commercial-grade
-            holiday inflatables. From classic characters to show-stopping displays — we
-            handle everything.
+            15-foot Santas. Walk-through archways. Snow globe shows.
+            Professionally installed and maintained all season.
           </p>
 
           <div className="mx-auto mt-8 flex items-center justify-center gap-3">
@@ -426,7 +425,7 @@ export default function InflatablesPage() {
             Bundle &amp; Save
           </h2>
           <p className="mt-4 text-lg text-white/80">
-            Pair inflatables with any Christmas lighting package and save up to 15%.
+            Save up to 15% when you bundle lights + inflatables — most customers do.
             Get the full holiday experience — lights on the house, inflatables in the yard.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
