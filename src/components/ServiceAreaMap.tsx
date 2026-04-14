@@ -7,7 +7,9 @@ interface Region {
   id: string;
   name: string;
   cities: string[];
-  mapQuery: string;
+  lat: number;
+  lng: number;
+  zoom: number;
   href: string;
   phone: string;
 }
@@ -20,7 +22,9 @@ const regions: Region[] = [
       "Mooresville", "Cornelius", "Davidson", "Huntersville", "Denver",
       "Sherrills Ford", "Troutman", "Statesville", "Stanley", "Terrell",
     ],
-    mapQuery: "Lake+Norman,+NC",
+    lat: 35.55,
+    lng: -80.88,
+    zoom: 10,
     href: "/service-areas/lake-norman",
     phone: "(877) 274-1475",
   },
@@ -32,7 +36,9 @@ const regions: Region[] = [
       "Clemmons", "Thomasville", "Jamestown", "Lexington", "Summerfield",
       "Archdale", "Lewisville",
     ],
-    mapQuery: "Greensboro,+High+Point,+Winston-Salem,+NC",
+    lat: 36.04,
+    lng: -79.95,
+    zoom: 9,
     href: "/service-areas/triad",
     phone: "(877) 274-1475",
   },
@@ -43,7 +49,9 @@ const regions: Region[] = [
       "Hickory", "Morganton", "Lenoir", "Newton", "Conover",
       "Valdese", "Granite Falls", "Long View", "Hudson",
     ],
-    mapQuery: "Hickory,+NC",
+    lat: 35.70,
+    lng: -81.40,
+    zoom: 10,
     href: "/service-areas/hickory",
     phone: "(877) 274-1475",
   },
@@ -54,7 +62,9 @@ const regions: Region[] = [
       "Boone", "Blowing Rock", "Banner Elk", "Fleetwood",
       "Wilkesboro", "North Wilkesboro",
     ],
-    mapQuery: "Boone,+NC",
+    lat: 36.18,
+    lng: -81.65,
+    zoom: 10,
     href: "/service-areas/boone",
     phone: "(877) 274-1475",
   },
@@ -144,7 +154,7 @@ export default function ServiceAreaMap() {
                 style={{ border: 0 }}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${activeRegion.mapQuery}&zoom=11`}
+                src={`https://www.google.com/maps/embed/v1/view?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&center=${activeRegion.lat},${activeRegion.lng}&zoom=${activeRegion.zoom}&maptype=roadmap`}
                 allowFullScreen
               />
             </div>
