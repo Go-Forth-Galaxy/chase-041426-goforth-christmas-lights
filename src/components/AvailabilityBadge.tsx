@@ -8,7 +8,7 @@ interface AvailabilityBadgeProps {
 
 export default function AvailabilityBadge({
   percentBooked = 73,
-  spotsRemaining = 8,
+  spotsRemaining = 10,
   area,
 }: AvailabilityBadgeProps) {
   return (
