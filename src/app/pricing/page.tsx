@@ -61,6 +61,9 @@ const additionalServices = [
   { service: "Wreaths", price: "$50\u2013$100 each" },
   { service: "Garland (per foot)", price: "$5\u2013$10" },
   { service: "Pathway/walkway lighting", price: "$3\u2013$5 per foot" },
+  { service: "Holiday inflatables (single)", price: "$299+" },
+  { service: "Holiday inflatables (up to 3)", price: "$599+" },
+  { service: "Holiday inflatables (up to 6)", price: "$999+" },
   { service: "Custom elements", price: "Contact for pricing" },
   { service: "Commercial properties", price: "Contact for custom quote" },
 ];
@@ -358,6 +361,30 @@ export default function PricingPage() {
               </tbody>
             </table>
           </div>
+        </div>
+      </section>
+
+      {/* Inflatables Callout */}
+      <section className="bg-gradient-to-r from-gf-red-dark to-gf-red px-6 py-14">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-gf-gold">
+            New Service
+          </span>
+          <h2 className="mt-4 font-[family-name:var(--font-display)] text-2xl font-bold text-white sm:text-3xl">
+            Holiday Inflatables Now Available
+          </h2>
+          <p className="mt-3 text-white/80">
+            Professional inflatable installation starting at $299. Bundle with any lighting package and save up to 15%.
+          </p>
+          <Link
+            href="/services/inflatables"
+            className="mt-6 inline-flex items-center rounded-xl bg-gf-gold px-8 py-3.5 text-base font-bold text-white shadow-lg transition-all duration-300 hover:bg-gf-gold-light hover:text-gf-charcoal hover:-translate-y-0.5"
+          >
+            See Inflatable Packages
+            <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
+          </Link>
         </div>
       </section>
 

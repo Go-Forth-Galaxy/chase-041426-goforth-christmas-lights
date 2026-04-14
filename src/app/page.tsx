@@ -5,6 +5,7 @@ import AvailabilityBadge from "@/components/AvailabilityBadge";
 import ServiceAreaCard from "@/components/ServiceAreaCard";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import CTABanner from "@/components/CTABanner";
+import InflatablesPopup from "@/components/InflatablesPopup";
 
 const serviceAreas = [
   {
@@ -121,6 +122,8 @@ const howItWorksSteps = [
 export default function Home() {
   return (
     <>
+      <InflatablesPopup />
+
       {/* ── Hero Section ── */}
       <section
         aria-label="Hero"
@@ -580,6 +583,44 @@ export default function Home() {
                   <span className="block text-2xl font-bold text-gf-gold font-[family-name:var(--font-display)]">24hr</span>
                   <span className="text-xs text-white/60">Emergency Maintenance</span>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Inflatables Banner ── */}
+      <section aria-labelledby="inflatables-banner" className="py-16 bg-white relative overflow-hidden">
+        <div className="relative max-w-5xl mx-auto px-6">
+          <div className="rounded-2xl border-2 border-gf-gold/20 bg-gradient-to-r from-gf-warm-white via-white to-gf-warm-white p-8 sm:p-12 flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-1 text-center md:text-left">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-gf-red/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-gf-red mb-3">
+                <span className="h-1.5 w-1.5 rounded-full bg-gf-red animate-pulse" />
+                New Service
+              </span>
+              <h2
+                id="inflatables-banner"
+                className="text-2xl sm:text-3xl font-bold text-gf-charcoal font-[family-name:var(--font-display)]"
+              >
+                Holiday Inflatables
+              </h2>
+              <p className="mt-3 text-gf-gray leading-relaxed max-w-lg">
+                Santa, snow globes, archways and more — professionally installed and maintained all
+                season. Starting at just $299.
+              </p>
+              <Link
+                href="/services/inflatables"
+                className="mt-5 inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg bg-gf-red text-white shadow-md hover:bg-gf-red-light hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
+              >
+                Learn More
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </Link>
+            </div>
+            <div className="flex-shrink-0 text-center">
+              <div className="inline-flex items-center justify-center w-28 h-28 rounded-full bg-gf-cream">
+                <span className="text-6xl" aria-hidden="true">🎅</span>
               </div>
             </div>
           </div>
