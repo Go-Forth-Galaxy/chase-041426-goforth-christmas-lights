@@ -1,21 +1,17 @@
 "use client";
 
 interface AvailabilityBadgeProps {
-  percentBooked?: number;
-  spotsRemaining?: number;
   area?: string;
 }
 
 export default function AvailabilityBadge({
-  percentBooked = 73,
-  spotsRemaining = 10,
   area,
 }: AvailabilityBadgeProps) {
   return (
     <div
       className="inline-flex w-full max-w-md flex-col gap-3 rounded-xl border-t-2 border-t-gf-gold bg-white/80 backdrop-blur-md p-6 shadow-md"
       role="status"
-      aria-label={`Availability: ${percentBooked}% booked, ${spotsRemaining} spots remaining${area ? ` in ${area}` : ""}`}
+      aria-label={`Availability: spots filling fast${area ? ` in ${area}` : ""}`}
     >
       {/* Header with live indicator */}
       <div className="flex items-center gap-2.5">
@@ -30,25 +26,22 @@ export default function AvailabilityBadge({
 
       {/* Text */}
       <p className="text-sm text-gf-charcoal leading-relaxed">
-        We&apos;re{" "}
-        <span className="text-lg font-extrabold text-gf-red">{percentBooked}%</span>{" "}
-        booked for the season
+        <span className="text-lg font-extrabold text-gf-red">Spots filling fast</span>
         {area && <span className="text-gf-gray"> in {area}</span>}
-        {" "}&mdash;{" "}
-        <span className="text-lg font-extrabold text-gf-red">{spotsRemaining} spots remaining</span>
+        {" "}&mdash; limited availability remains for the upcoming holiday season
       </p>
 
       {/* Progress bar */}
       <div
         className="h-3.5 w-full overflow-hidden rounded-full bg-gf-gray-light"
         role="progressbar"
-        aria-valuenow={percentBooked}
+        aria-valuenow={80}
         aria-valuemin={0}
         aria-valuemax={100}
       >
         <div
           className="relative h-full rounded-full bg-gradient-to-r from-gf-red to-gf-red-light transition-all duration-700 ease-out overflow-hidden"
-          style={{ width: `${percentBooked}%` }}
+          style={{ width: "80%" }}
         >
           {/* Shimmer overlay */}
           <div

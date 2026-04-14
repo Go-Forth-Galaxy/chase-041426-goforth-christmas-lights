@@ -49,7 +49,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="mt-2 text-sm leading-relaxed text-gray-400">
-              Professional holiday light installation backed by 60+ years of trusted home service in North Carolina.
+              Professional holiday light installation backed by 65+ years of trusted home service in North Carolina.
             </p>
             <p className="mt-1 text-xs text-gray-500 italic">
               Making homes shine, one roofline at a time.

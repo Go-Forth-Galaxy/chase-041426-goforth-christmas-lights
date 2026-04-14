@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://lights.go-forth.com"),
   title: "Go-Forth Christmas Lights | Professional Holiday Light Installation in NC",
   description:
-    "Professional Christmas light installation across Lake Norman, the Triad, Hickory, and Boone NC. Licensed, insured, and backed by 60+ years of trusted home service. Get your free quote today!",
+    "Professional Christmas light installation across Lake Norman, the Triad, Hickory, and Boone NC. Licensed, insured, and backed by 65+ years of trusted home service. Get your free quote today!",
   keywords: [
     "Christmas light installation",
     "holiday lights",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Go-Forth Christmas Lights | Professional Holiday Light Installation in NC",
     description:
-      "Professional Christmas light installation across North Carolina. Licensed, insured, and backed by 60+ years of trusted home service.",
+      "Professional Christmas light installation across North Carolina. Licensed, insured, and backed by 65+ years of trusted home service.",
     type: "website",
     locale: "en_US",
     images: [

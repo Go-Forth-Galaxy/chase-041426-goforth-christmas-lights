@@ -7,7 +7,7 @@ interface CTABannerProps {
 
 export default function CTABanner({
   headline = "Ready to Light Up Your Home?",
-  subtext = "Book your free consultation today and let us handle the rest. Limited spots available for the 2026 holiday season.",
+  subtext = "Book your free consultation today and let us handle the rest. Limited spots available for the upcoming holiday season.",
 }: CTABannerProps) {
   return (
     <section aria-label="Call to action" className="relative overflow-hidden">

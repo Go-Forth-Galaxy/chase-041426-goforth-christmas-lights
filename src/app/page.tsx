@@ -28,7 +28,7 @@ const serviceAreas = [
     name: "Hickory",
     cities: "Hickory, Morganton, Lenoir, Newton, Conover",
     description:
-      "Bringing professional Christmas light installation to the Catawba Valley and surrounding foothills.",
+      "From downtown storefronts to foothill estates — we light up the Catawba Valley.",
     href: "/service-areas/hickory",
     image: `${basePath}/images/service-areas/hickory.jpg`,
   },
@@ -36,7 +36,7 @@ const serviceAreas = [
     name: "Boone",
     cities: "Boone, Blowing Rock, Banner Elk, Linville, Sugar Mountain",
     description:
-      "Holiday lights that shine bright in the High Country. Mountain homes deserve mountain-grade installation.",
+      "Holiday lights that shine bright in the High Country. Rated for mountain winds, steep rooflines, and elevation changes.",
     href: "/service-areas/boone",
     image: `${basePath}/images/service-areas/boone.jpg`,
   },
@@ -45,7 +45,7 @@ const serviceAreas = [
 const testimonials = [
   {
     quote:
-      "Go-Forth transformed our home last Christmas. The design was stunning, installation was quick, and when one strand went out in January, they were back the next day. Worth every penny.",
+      "Go-Forth transformed our home last Christmas. The design was stunning, installation was quick, and when one strand went out during the season, they were back the next day. Worth every penny.",
     name: "Sarah M.",
     location: "Mooresville",
     stars: 5,
@@ -54,7 +54,7 @@ const testimonials = [
   },
   {
     quote:
-      "We've been using Go-Forth for pest control for years, so trying their Christmas lights was a no-brainer. Absolutely professional. Our neighbors couldn't stop asking who did our lights.",
+      "We've been using Go-Forth for pest control and HVAC for years, so trying their Christmas lights was a no-brainer. Absolutely professional. Our neighbors couldn't stop asking who did our lights.",
     name: "David K.",
     location: "Greensboro",
     stars: 5,
@@ -77,7 +77,7 @@ const howItWorksSteps = [
     number: "1",
     title: "Request a Free Quote",
     description:
-      "Tell us about your home and vision. We'll schedule a time to visit and design a custom lighting plan.",
+      "Tell us about your home — square footage, style, and anything you've been dreaming up. We'll schedule a walkthrough.",
     icon: (
       <svg className="w-10 h-10 text-gf-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
@@ -88,7 +88,7 @@ const howItWorksSteps = [
     number: "2",
     title: "Custom Design",
     description:
-      "Our designers create a personalized lighting plan tailored to your home's architecture and your style preferences.",
+      "We design a lighting plan around your home's architecture, your neighborhood, and your budget.",
     icon: (
       <svg className="w-10 h-10 text-gf-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
@@ -110,7 +110,7 @@ const howItWorksSteps = [
     number: "4",
     title: "Sit Back & Enjoy",
     description:
-      "We handle maintenance all season, then take everything down and store it for next year. Hassle-free from start to finish.",
+      "We handle maintenance all season, then take everything down and store it in our climate-controlled facility — ready to go again next year at a lower price.",
     icon: (
       <svg className="w-10 h-10 text-gf-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
@@ -236,7 +236,7 @@ export default function Home() {
               textShadow: "0 0 40px rgba(212,168,67,0.3), 0 0 80px rgba(212,168,67,0.1), 0 2px 4px rgba(0,0,0,0.5)",
             }}
           >
-            Make Your Home the Brightest on the Block
+            Your Home. Our Lights. Zero Hassle.
           </h1>
 
           {/* Decorative divider */}
@@ -248,7 +248,7 @@ export default function Home() {
 
           <p className="mt-6 text-lg sm:text-xl leading-relaxed text-gray-200 max-w-2xl mx-auto">
             Professional Christmas light installation across Lake Norman, the Triad, and Western NC.
-            Licensed, insured, and backed by 60+ years of trusted home service.
+            Licensed, insured, and backed by 65+ years of trusted home service.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -307,7 +307,7 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2m6-2a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z" />
                 </svg>
               }
-              stat="60+"
+              stat="65+"
               title="Years in Business"
               subtitle="Trusted since 1959"
               hasDivider
@@ -320,7 +320,7 @@ export default function Home() {
               }
               stat="100%"
               title="Licensed & Insured"
-              subtitle="Full liability coverage"
+              subtitle="Full liability + workers' comp"
               hasDivider
             />
             <TrustItem
@@ -331,7 +331,7 @@ export default function Home() {
               }
               stat="LED"
               title="Commercial-Grade"
-              subtitle="Brighter, longer-lasting"
+              subtitle="Built to last 10+ seasons"
               hasDivider
             />
             <TrustItem
@@ -341,8 +341,8 @@ export default function Home() {
                 </svg>
               }
               stat="5.0"
-              title="Satisfaction Guarantee"
-              subtitle="We stand behind our work"
+              title="Google Rating"
+              subtitle="Satisfaction guaranteed"
             />
           </div>
         </div>
@@ -572,8 +572,8 @@ export default function Home() {
               </div>
               <div className="mt-6 grid grid-cols-3 gap-4 text-center">
                 <div className="rounded-xl bg-white/5 border border-white/10 p-4">
-                  <span className="block text-2xl font-bold text-gf-gold font-[family-name:var(--font-display)]">500+</span>
-                  <span className="text-xs text-white/60">Commercial Installs</span>
+                  <span className="block text-2xl font-bold text-gf-gold font-[family-name:var(--font-display)]">Hundreds</span>
+                  <span className="text-xs text-white/60">of Commercial Installs</span>
                 </div>
                 <div className="rounded-xl bg-white/5 border border-white/10 p-4">
                   <span className="block text-2xl font-bold text-gf-gold font-[family-name:var(--font-display)]">Custom</span>
@@ -581,7 +581,7 @@ export default function Home() {
                 </div>
                 <div className="rounded-xl bg-white/5 border border-white/10 p-4">
                   <span className="block text-2xl font-bold text-gf-gold font-[family-name:var(--font-display)]">24hr</span>
-                  <span className="text-xs text-white/60">Emergency Maintenance</span>
+                  <span className="text-xs text-white/60">In-Season Emergency Maintenance</span>
                 </div>
               </div>
             </div>
@@ -606,7 +606,7 @@ export default function Home() {
               </h2>
               <p className="mt-3 text-gf-gray leading-relaxed max-w-lg">
                 Santa, snow globes, archways and more — professionally installed and maintained all
-                season. Starting at just $299.
+                season. Starting at just $299 — fully installed and maintained.
               </p>
               <Link
                 href="/services/inflatables"
