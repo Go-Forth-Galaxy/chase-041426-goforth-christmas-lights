@@ -100,16 +100,16 @@ const trustCards = [
 const testimonials = [
   {
     quote:
-      "We\u2019ve used Go-Forth for pest control for 10 years. When they started offering Christmas lights, we didn\u2019t think twice. Same great people, same great service. Our house has never looked better during the holidays.",
-    name: "Mike & Linda R.",
-    location: "High Point",
+      "Go-Forth handles my monthly pest control services and has always done an amazing job. They are timely, professional, and the quality of their work is superb. This season I had them install Christmas lights at my home for the first time and am amazed at how wonderful of a job they did.",
+    name: "Danielle Blanton",
+    location: "Verified on Trustpilot",
     rating: 5,
   },
   {
     quote:
-      "What impressed me most was the communication. They showed up when they said they would, the crew was professional, and when I had a question in December, someone answered the phone on the first ring.",
-    name: "Patricia W.",
-    location: "Cornelius",
+      "I have been a customer of Go-Forth since buying our first home in 1978! With their service and prompt revisits when a problem popped up, I have felt they were a very professional and valuable company. I\u2019ve used their insulation service, Christmas Lights service and lawn services as well as pest control. I would recommend them without any reservation.",
+    name: "Satisfied Customer",
+    location: "Verified on Trustpilot",
     rating: 5,
   },
 ];

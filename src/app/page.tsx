@@ -45,30 +45,21 @@ const serviceAreas = [
 const testimonials = [
   {
     quote:
-      "Go-Forth transformed our home last Christmas. The design was stunning, installation was quick, and when one strand went out during the season, they were back the next day. Worth every penny.",
-    name: "Sarah M.",
-    location: "Mooresville",
+      "Go-Forth handles my monthly pest control services and has always done an amazing job. They are timely, professional, and the quality of their work is superb. This season I had them install Christmas lights at my home for the first time and am amazed at how wonderful of a job they did.",
+    name: "Danielle Blanton",
+    location: "Verified on Trustpilot",
     stars: 5,
-    initials: "SM",
+    initials: "DB",
     color: "bg-gf-red",
   },
   {
     quote:
-      "We've been using Go-Forth for pest control and HVAC for years, so trying their Christmas lights was a no-brainer. Absolutely professional. Our neighbors couldn't stop asking who did our lights.",
-    name: "David K.",
-    location: "Greensboro",
+      "I have been a customer of Go-Forth since buying our first home in 1978! With their service and prompt revisits when a problem popped up, I have felt they were a very professional and valuable company. I\u2019ve used their insulation service, Christmas Lights service and lawn services as well as pest control. I would recommend them without any reservation.",
+    name: "Satisfied Customer",
+    location: "Verified on Trustpilot",
     stars: 5,
-    initials: "DK",
+    initials: "SC",
     color: "bg-gf-gold",
-  },
-  {
-    quote:
-      "Best decision we made last holiday season. No more tangled lights, no more climbing ladders. Just beautiful lights from Thanksgiving through New Year's.",
-    name: "Jennifer T.",
-    location: "Davidson",
-    stars: 5,
-    initials: "JT",
-    color: "bg-gf-red",
   },
 ];
 
@@ -679,7 +670,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <span className="inline-block text-sm font-semibold tracking-widest uppercase text-gf-gold mb-3">
-              Testimonials
+              Verified Reviews
             </span>
             <h2
               id="testimonials-heading"
@@ -687,14 +678,23 @@ export default function Home() {
             >
               What Our Customers Say
             </h2>
+            <div className="mt-4 flex items-center justify-center gap-3">
+              <div className="flex gap-0.5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-gf-gold" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+                  </svg>
+                ))}
+              </div>
+              <span className="text-sm font-semibold text-gf-charcoal">4.9 out of 5</span>
+              <span className="text-sm text-gf-gray">&mdash; Thousands of Google Reviews</span>
+            </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 items-start">
-            {testimonials.map((t, idx) => (
+          <div className="grid md:grid-cols-2 gap-8 items-start max-w-4xl mx-auto">
+            {testimonials.map((t) => (
               <blockquote
                 key={t.name}
-                className={`relative flex flex-col rounded-2xl bg-white border border-gray-100 p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-l-4 border-l-gf-red ${
-                  idx === 1 ? "md:mt-6" : idx === 2 ? "md:mt-3" : ""
-                }`}
+                className="relative flex flex-col rounded-2xl bg-white border border-gray-100 p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-l-4 border-l-gf-red"
               >
                 {/* Large decorative quote mark */}
                 <div
