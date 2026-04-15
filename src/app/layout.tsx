@@ -106,6 +106,31 @@ export default function RootLayout({
                 { "@type": "City", name: "Banner Elk" },
                 { "@type": "City", name: "Wilkesboro" },
               ],
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "4.9",
+                bestRating: "5",
+                ratingCount: "2000",
+                reviewCount: "2000",
+              },
+              review: [
+                {
+                  "@type": "Review",
+                  author: { "@type": "Person", name: "Danielle Blanton" },
+                  datePublished: "2024-11-05",
+                  reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+                  reviewBody:
+                    "Go-Forth handles my monthly pest control services and has always done an amazing job. They are timely, professional, and the quality of their work is superb. This season I had them install Christmas lights at my home for the first time and am amazed at how wonderful of a job they did.",
+                },
+                {
+                  "@type": "Review",
+                  author: { "@type": "Person", name: "Satisfied Customer" },
+                  datePublished: "2016-05-25",
+                  reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+                  reviewBody:
+                    "I have been a customer of Go-Forth since buying our first home in 1978! With their service and prompt revisits when a problem popped up, I have felt they were a very professional and valuable company. I've used their insulation service, Christmas Lights service and lawn services as well as pest control. I would recommend them without any reservation.",
+                },
+              ],
               hasOfferCatalog: {
                 "@type": "OfferCatalog",
                 name: "Christmas Light Installation Packages",
