@@ -5,7 +5,7 @@ import TestimonialCard from "@/components/TestimonialCard";
 import CTABanner from "@/components/CTABanner";
 
 export const metadata: Metadata = {
-  title: "About Go-Forth Christmas Lights | 60+ Years of Trusted Home Service",
+  title: "About Go-Forth Christmas Lights | 65+ Years of Trusted Home Service",
   description:
     "Learn about Go-Forth Christmas Lights — a division of Go-Forth Home Services, a third-generation family company serving North Carolina since 1959. Licensed, insured, and community-focused.",
 };
@@ -33,7 +33,7 @@ const trustCards = [
     ),
   },
   {
-    title: "60+ Years in Business",
+    title: "65+ Years in Business",
     description:
       "We\u2019re not a seasonal side hustle. We\u2019re a third-generation family company with a reputation to uphold.",
     icon: (
@@ -176,7 +176,7 @@ export default function AboutPage() {
               <strong className="text-gf-charcoal">23+ locations</strong> across
               North Carolina, South Carolina, Virginia, and beyond &mdash;
               still guided by the values Frank and Johnie built the company on
-              more than six decades ago.
+              more than 65 years ago.
             </p>
           </div>
           </div>
@@ -260,7 +260,7 @@ export default function AboutPage() {
               across the Triad and Lake Norman.
             </p>
             <p>
-              For over six decades, we&rsquo;ve been supporting NC communities
+              For over 65 years, we&rsquo;ve been supporting NC communities
               &mdash; through employment, sponsorships, and simply showing up
               when our neighbors need us. That&rsquo;s not marketing. That&rsquo;s
               just how the Goforth family does business.
