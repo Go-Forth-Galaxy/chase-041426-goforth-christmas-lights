@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import basePath from "@/lib/basePath";
+import basePath, { img } from "@/lib/basePath";
 import CTABanner from "@/components/CTABanner";
 
 const inflatablePackages = [
@@ -57,32 +57,32 @@ const inflatableTypes = [
   {
     name: "Classic Characters",
     description: "Santa, snowmen, reindeer, and more holiday favorites.",
-    image: `${basePath}/images/inflatables/santa.jpg`,
+    image: img("/images/inflatables/santa.jpg"),
   },
   {
     name: "Snow Globes",
     description: "6–12 ft animated snow globes with built-in swirling snow effects and LED lighting.",
-    image: `${basePath}/images/inflatables/snowglobe.jpg`,
+    image: img("/images/inflatables/snowglobe.jpg"),
   },
   {
     name: "Archways",
     description: "Walk-through candy cane arches and holiday-themed tunnels. Perfect for driveways, walkways, or front yard entrances.",
-    image: `${basePath}/images/inflatables/archway.jpg`,
+    image: img("/images/inflatables/archway.jpg"),
   },
   {
     name: "Winter Wonderland Sets",
     description: "Complete themed yard displays with multiple coordinated inflatables.",
-    image: `${basePath}/images/inflatables/wonderland.jpg`,
+    image: img("/images/inflatables/wonderland.jpg"),
   },
   {
     name: "Professional Installation",
     description: "Our trained crew handles delivery, setup, anchoring, and season-long maintenance.",
-    image: `${basePath}/images/inflatables/installation.jpg`,
+    image: img("/images/inflatables/installation.jpg"),
   },
   {
     name: "Full Holiday Packages",
     description: "Combine inflatables with roofline lights, trees, and pathway lighting for the complete look.",
-    image: `${basePath}/images/inflatables/hero.jpg`,
+    image: img("/images/inflatables/hero.jpg"),
   },
 ];
 
@@ -179,7 +179,7 @@ export default function InflatablesPage() {
         {/* Hero background image */}
         <div aria-hidden="true" className="absolute inset-0">
           <Image
-            src={`${basePath}/images/inflatables/hero.jpg`}
+            src={img("/images/inflatables/hero.jpg")}
             alt=""
             fill
             sizes="100vw"
@@ -411,7 +411,7 @@ export default function InflatablesPage() {
       <section className="relative overflow-hidden py-20">
         <div aria-hidden="true" className="absolute inset-0">
           <Image
-            src={`${basePath}/images/inflatables/wonderland.jpg`}
+            src={img("/images/inflatables/wonderland.jpg")}
             alt=""
             fill
             sizes="100vw"

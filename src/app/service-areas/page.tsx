@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import basePath from "@/lib/basePath";
+import basePath, { img } from "@/lib/basePath";
 import ServiceAreaMap from "@/components/ServiceAreaMap";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ const areas = [
     description:
       "From lakefront estates to charming neighborhoods, we bring holiday magic to the Lake Norman area.",
     href: "/service-areas/lake-norman",
-    image: `${basePath}/images/service-areas/lake-norman.jpg`,
+    image: img("/images/service-areas/lake-norman.jpg"),
   },
   {
     name: "Triad",
@@ -26,7 +26,7 @@ const areas = [
     description:
       "Our home territory since 1959. Professional holiday lighting for the Triad's finest homes and businesses.",
     href: "/service-areas/triad",
-    image: `${basePath}/images/service-areas/triad.jpg`,
+    image: img("/images/service-areas/triad.jpg"),
   },
   {
     name: "Hickory",
@@ -34,7 +34,7 @@ const areas = [
     description:
       "From downtown storefronts to foothill estates — we light up the Catawba Valley.",
     href: "/service-areas/hickory",
-    image: `${basePath}/images/service-areas/hickory.jpg`,
+    image: img("/images/service-areas/hickory.jpg"),
   },
   {
     name: "Boone / High Country",
@@ -42,7 +42,7 @@ const areas = [
     description:
       "Holiday lights that shine bright in the High Country. Rated for mountain winds, steep rooflines, and elevation changes.",
     href: "/service-areas/boone",
-    image: `${basePath}/images/service-areas/boone.jpg`,
+    image: img("/images/service-areas/boone.jpg"),
   },
 ];
 

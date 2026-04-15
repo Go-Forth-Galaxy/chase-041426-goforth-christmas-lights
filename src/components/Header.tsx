@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import basePath from "@/lib/basePath";
+import basePath, { img } from "@/lib/basePath";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -62,7 +62,7 @@ export default function Header() {
           {/* Logo area */}
           <Link href="/" className="flex items-center gap-2.5 group">
             <Image
-              src={`${basePath}/images/logo-dark.png`}
+              src={img("/images/logo-dark.png")}
               alt="Go-Forth Home Services"
               width={160}
               height={48}

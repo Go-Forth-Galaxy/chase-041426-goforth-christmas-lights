@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import basePath from "@/lib/basePath";
+import basePath, { img } from "@/lib/basePath";
 import AvailabilityBadge from "@/components/AvailabilityBadge";
 import ServiceAreaCard from "@/components/ServiceAreaCard";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
@@ -14,7 +14,7 @@ const serviceAreas = [
     description:
       "From lakefront estates to charming neighborhoods, we bring holiday magic to the Lake Norman area.",
     href: "/service-areas/lake-norman",
-    image: `${basePath}/images/service-areas/lake-norman.jpg`,
+    image: img("/images/service-areas/lake-norman.jpg"),
   },
   {
     name: "Triad",
@@ -22,7 +22,7 @@ const serviceAreas = [
     description:
       "Our home territory since 1959. Professional holiday lighting for the Triad's finest homes and businesses.",
     href: "/service-areas/triad",
-    image: `${basePath}/images/service-areas/triad.jpg`,
+    image: img("/images/service-areas/triad.jpg"),
   },
   {
     name: "Hickory",
@@ -30,7 +30,7 @@ const serviceAreas = [
     description:
       "From downtown storefronts to foothill estates — we light up the Catawba Valley.",
     href: "/service-areas/hickory",
-    image: `${basePath}/images/service-areas/hickory.jpg`,
+    image: img("/images/service-areas/hickory.jpg"),
   },
   {
     name: "Boone",
@@ -38,7 +38,7 @@ const serviceAreas = [
     description:
       "Holiday lights that shine bright in the High Country. Rated for mountain winds, steep rooflines, and elevation changes.",
     href: "/service-areas/boone",
-    image: `${basePath}/images/service-areas/boone.jpg`,
+    image: img("/images/service-areas/boone.jpg"),
   },
 ];
 
@@ -132,7 +132,7 @@ export default function Home() {
         {/* Hero background image */}
         <div aria-hidden="true" className="absolute inset-0">
           <Image
-            src={`${basePath}/images/hero-main.jpg`}
+            src={img("/images/hero-main.jpg")}
             alt=""
             fill
             sizes="100vw"
@@ -563,7 +563,7 @@ export default function Home() {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/10">
                 <Image
-                  src={`${basePath}/images/gallery/commercial-storefront.jpg`}
+                  src={img("/images/gallery/commercial-storefront.jpg")}
                   alt="Professional commercial Christmas lighting on a downtown storefront"
                   width={600}
                   height={450}
@@ -621,7 +621,7 @@ export default function Home() {
             <div className="flex-shrink-0">
               <div className="relative w-36 h-36 rounded-2xl overflow-hidden shadow-lg">
                 <Image
-                  src={`${basePath}/images/inflatables/santa.jpg`}
+                  src={img("/images/inflatables/santa.jpg")}
                   alt="Holiday inflatable Santa Claus"
                   fill
                   sizes="144px"
