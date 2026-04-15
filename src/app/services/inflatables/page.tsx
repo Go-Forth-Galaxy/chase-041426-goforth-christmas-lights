@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import basePath from "@/lib/basePath";
 import CTABanner from "@/components/CTABanner";
 
 const inflatablePackages = [
@@ -10,7 +12,7 @@ const inflatablePackages = [
     price: "$299",
     highlighted: false,
     features: [
-      "1 large inflatable (up to 8 ft)",
+      "1 large inflatable (up to 8 ft tall)",
       "Professional placement & anchoring",
       "Timer setup for auto on/off",
       "Season-long maintenance",
@@ -27,7 +29,7 @@ const inflatablePackages = [
       "Everything in Starter, plus:",
       "Up to 3 inflatables (mixed sizes)",
       "Coordinated yard layout design",
-      "LED spotlight accents",
+      "LED spotlights to illuminate inflatables after dark",
       "Stakes, sandbags & all hardware",
       "Weather monitoring & re-inflation",
     ],
@@ -44,7 +46,7 @@ const inflatablePackages = [
       "Custom themed arrangement",
       "Pathway integration with inflatables",
       "Premium XL inflatables available (12ft+)",
-      "Priority scheduling & support",
+      "Priority scheduling — first in line for install dates and same-day maintenance",
     ],
     perfectFor: "Homes that want the ultimate holiday yard display",
     cta: "Get Wonderland Quote",
@@ -54,41 +56,41 @@ const inflatablePackages = [
 const inflatableTypes = [
   {
     name: "Classic Characters",
-    description: "Santa, Snowman, Rudolph, Frosty, and more timeless favorites.",
-    icon: "🎅",
+    description: "Santa, snowmen, reindeer, and more holiday favorites.",
+    image: `${basePath}/images/inflatables/santa.jpg`,
   },
   {
     name: "Snow Globes",
-    description: "Animated snow globe inflatables with swirling snow effects.",
-    icon: "🔮",
+    description: "6–12 ft animated snow globes with built-in swirling snow effects and LED lighting.",
+    image: `${basePath}/images/inflatables/snowglobe.jpg`,
   },
   {
     name: "Archways",
-    description: "Walk-through candy cane arches and holiday-themed tunnels.",
-    icon: "🌈",
+    description: "Walk-through candy cane arches and holiday-themed tunnels. Perfect for driveways, walkways, or front yard entrances.",
+    image: `${basePath}/images/inflatables/archway.jpg`,
   },
   {
-    name: "Nativity & Religious",
-    description: "Tasteful nativity scenes and faith-based holiday displays.",
-    icon: "⭐",
+    name: "Winter Wonderland Sets",
+    description: "Complete themed yard displays with multiple coordinated inflatables.",
+    image: `${basePath}/images/inflatables/wonderland.jpg`,
   },
   {
-    name: "Themed Collections",
-    description: "Matching sets like Santa's Workshop, North Pole Express, or Winter Village.",
-    icon: "🏘️",
+    name: "Professional Installation",
+    description: "Our trained crew handles delivery, setup, anchoring, and season-long maintenance.",
+    image: `${basePath}/images/inflatables/installation.jpg`,
   },
   {
-    name: "XL & Custom",
-    description: "Giant 12ft+ inflatables and custom-branded commercial pieces.",
-    icon: "🏔️",
+    name: "Full Holiday Packages",
+    description: "Combine inflatables with roofline lights, trees, and pathway lighting for the complete look.",
+    image: `${basePath}/images/inflatables/hero.jpg`,
   },
 ];
 
 const faqs = [
   {
-    question: "What happens if an inflatable deflates overnight?",
+    question: "Do inflatables stay inflated 24/7?",
     answer:
-      "Our inflatables are set on timers, so they deflate at night and re-inflate each evening automatically. If one fails to inflate, our maintenance team will address it — usually within 24 hours.",
+      "No — our inflatables run on timers, so they inflate each evening and deflate overnight automatically. If one ever fails to inflate, our maintenance team will address it — usually within 24 hours.",
   },
   {
     question: "Will inflatables damage my lawn?",
@@ -103,12 +105,12 @@ const faqs = [
   {
     question: "Do you provide the inflatables or do I need to buy them?",
     answer:
-      "We provide everything. Our commercial-grade inflatables are brighter, more durable, and larger than retail options. First-year pricing includes the inflatables; returning customers save 20–30%.",
+      "We own and maintain the inflatables. Our commercial-grade units are brighter, more durable, and larger than retail options. First-year pricing covers your custom set; returning customers save 20–30% since everything's already in storage.",
   },
   {
     question: "How do they hold up in wind and rain?",
     answer:
-      "Our commercial-grade inflatables are rated for winds up to 35 mph. In severe weather, our team may temporarily secure them. We monitor weather forecasts throughout the season.",
+      "Our commercial-grade inflatables are rated for winds up to 35 mph. In the rare event of severe weather (35+ mph winds, ice storms), our team proactively secures or temporarily removes units. We monitor weather forecasts throughout the season.",
   },
 ];
 
@@ -172,15 +174,26 @@ export default function InflatablesPage() {
       {/* Hero */}
       <section
         aria-label="Inflatables hero"
-        className="relative overflow-hidden bg-gradient-to-br from-gf-red-dark via-gf-red to-gf-red-light px-6 py-24 text-center sm:py-32"
+        className="relative overflow-hidden px-6 py-24 text-center sm:py-32 min-h-[500px] flex items-center justify-center"
       >
+        {/* Hero background image */}
+        <div aria-hidden="true" className="absolute inset-0">
+          <Image
+            src={`${basePath}/images/inflatables/hero.jpg`}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+        </div>
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-gf-red-dark/80 via-[#4a0000]/70 to-[#1a0000]/80" />
+
         <Snowflake className="absolute left-[8%] top-[15%] h-8 w-8 text-white/[0.07] animate-pulse" />
         <Snowflake className="absolute right-[12%] top-[25%] h-12 w-12 text-white/[0.05]" />
         <Snowflake className="absolute left-[20%] bottom-[20%] h-6 w-6 text-white/[0.08]" />
         <Snowflake className="absolute right-[25%] bottom-[15%] h-10 w-10 text-white/[0.06] animate-pulse" />
         <Snowflake className="absolute left-[50%] top-[10%] h-5 w-5 text-white/[0.07]" />
-
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/[0.03] to-transparent" />
 
         <div className="relative mx-auto max-w-3xl">
           <span className="inline-block text-sm font-semibold tracking-widest uppercase text-gf-gold mb-4">
@@ -190,9 +203,8 @@ export default function InflatablesPage() {
             Holiday Inflatables
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
-            Bring your yard to life with professionally installed, commercial-grade
-            holiday inflatables. From classic characters to show-stopping displays — we
-            handle everything.
+            15-foot Santas. Walk-through archways. Snow globe shows.
+            Professionally installed and maintained all season.
           </p>
 
           <div className="mx-auto mt-8 flex items-center justify-center gap-3">
@@ -243,13 +255,22 @@ export default function InflatablesPage() {
             {inflatableTypes.map((type) => (
               <div
                 key={type.name}
-                className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-gf-gold/30"
+                className="group rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-gf-gold/30"
               >
-                <span className="text-4xl block mb-4 transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
-                  {type.icon}
-                </span>
-                <h3 className="text-lg font-bold text-gf-charcoal">{type.name}</h3>
-                <p className="mt-2 text-sm text-gf-gray leading-relaxed">{type.description}</p>
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={type.image}
+                    alt={type.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  <h3 className="absolute bottom-3 left-4 text-lg font-bold text-white drop-shadow-lg">{type.name}</h3>
+                </div>
+                <div className="p-5">
+                  <p className="text-sm text-gf-gray leading-relaxed">{type.description}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -387,13 +408,24 @@ export default function InflatablesPage() {
       </section>
 
       {/* Bundle CTA */}
-      <section className="bg-gradient-to-r from-gf-red-dark to-gf-red px-6 py-16">
-        <div className="mx-auto max-w-3xl text-center">
+      <section className="relative overflow-hidden py-20">
+        <div aria-hidden="true" className="absolute inset-0">
+          <Image
+            src={`${basePath}/images/inflatables/wonderland.jpg`}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-gf-red-dark/90 to-gf-red/85" />
+
+        <div className="relative mx-auto max-w-3xl px-6 text-center">
           <h2 className="font-[family-name:var(--font-display)] text-3xl font-bold text-white sm:text-4xl">
             Bundle &amp; Save
           </h2>
           <p className="mt-4 text-lg text-white/80">
-            Pair inflatables with any Christmas lighting package and save up to 15%.
+            Save up to 15% when you bundle lights + inflatables — most customers do.
             Get the full holiday experience — lights on the house, inflatables in the yard.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">

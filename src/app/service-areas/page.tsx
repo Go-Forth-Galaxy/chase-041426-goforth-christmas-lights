@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import basePath from "@/lib/basePath";
+import ServiceAreaMap from "@/components/ServiceAreaMap";
 
 export const metadata: Metadata = {
   title: "Christmas Light Installation Service Areas | Go-Forth",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 const areas = [
   {
     name: "Lake Norman",
-    cities: ["Mooresville", "Cornelius", "Davidson", "Huntersville"],
+    cities: ["Mooresville", "Cornelius", "Davidson", "Huntersville", "Denver", "Sherrills Ford", "Troutman", "Statesville"],
     description:
       "From lakefront estates to charming neighborhoods, we bring holiday magic to the Lake Norman area.",
     href: "/service-areas/lake-norman",
@@ -21,7 +22,7 @@ const areas = [
   },
   {
     name: "Triad",
-    cities: ["Greensboro", "Winston-Salem", "High Point"],
+    cities: ["Greensboro", "Winston-Salem", "High Point", "Kernersville", "Burlington", "Clemmons", "Thomasville", "Jamestown"],
     description:
       "Our home territory since 1959. Professional holiday lighting for the Triad's finest homes and businesses.",
     href: "/service-areas/triad",
@@ -29,17 +30,17 @@ const areas = [
   },
   {
     name: "Hickory",
-    cities: ["Hickory", "Morganton", "Lenoir", "Newton"],
+    cities: ["Hickory", "Morganton", "Lenoir", "Newton", "Conover", "Valdese", "Granite Falls"],
     description:
-      "Bringing professional Christmas light installation to the Catawba Valley and surrounding foothills.",
+      "From downtown storefronts to foothill estates — we light up the Catawba Valley.",
     href: "/service-areas/hickory",
     image: `${basePath}/images/service-areas/hickory.jpg`,
   },
   {
     name: "Boone / High Country",
-    cities: ["Boone", "Blowing Rock", "Banner Elk"],
+    cities: ["Boone", "Blowing Rock", "Banner Elk", "Fleetwood", "Wilkesboro", "North Wilkesboro"],
     description:
-      "Holiday lights that shine bright in the High Country. Mountain homes deserve mountain-grade installation.",
+      "Holiday lights that shine bright in the High Country. Rated for mountain winds, steep rooflines, and elevation changes.",
     href: "/service-areas/boone",
     image: `${basePath}/images/service-areas/boone.jpg`,
   },
@@ -99,6 +100,9 @@ export default function ServiceAreasPage() {
           </div>
         </div>
       </section>
+
+      {/* Interactive Map */}
+      <ServiceAreaMap />
 
       {/* CTA */}
       <section className="py-16 bg-gf-cream">

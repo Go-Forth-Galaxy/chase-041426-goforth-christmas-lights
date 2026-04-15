@@ -25,15 +25,15 @@ const projects: Project[] = [
   { id: 1, title: "Lakefront Estate", location: "Mooresville", category: "Residential", region: "Lake Norman", image: `${basePath}/images/gallery/lakefront-estate.jpg` },
   { id: 2, title: "Historic Bungalow", location: "Davidson", category: "Residential", region: "Lake Norman", image: `${basePath}/images/gallery/victorian-elegant.jpg` },
   { id: 3, title: "Mountain Lodge", location: "Blowing Rock", category: "Residential", region: "Boone", image: `${basePath}/images/gallery/mountain-cabin.jpg` },
-  { id: 4, title: "Downtown Storefront", location: "High Point", category: "Commercial", region: "Triad", image: `${basePath}/images/gallery/commercial-storefront.jpg` },
+  { id: 4, title: "Downtown Storefront", location: "High Point", category: "Commercial", region: "Triad", image: `${basePath}/images/gallery/commercial-detail.jpg` },
   { id: 5, title: "Two-Story Colonial", location: "Greensboro", category: "Residential", region: "Triad", image: `${basePath}/images/gallery/traditional-festive.jpg` },
-  { id: 6, title: "Restaurant Patio", location: "Winston-Salem", category: "Commercial", region: "Triad", image: `${basePath}/images/gallery/walkway-landscape.jpg` },
+  { id: 6, title: "Walkway & Landscape Lighting", location: "Winston-Salem", category: "Residential", region: "Triad", image: `${basePath}/images/gallery/walkway-landscape.jpg` },
   { id: 7, title: "Modern Farmhouse", location: "Huntersville", category: "Residential", region: "Lake Norman", image: `${basePath}/images/gallery/modern-farmhouse.jpg` },
   { id: 8, title: "Shopping Center", location: "Hickory", category: "Commercial", region: "Hickory", image: `${basePath}/images/gallery/showstopper.jpg` },
   { id: 9, title: "Craftsman Home", location: "Cornelius", category: "Residential", region: "Lake Norman", image: `${basePath}/images/gallery/craftsman-cozy.jpg` },
   { id: 10, title: "Church Facade", location: "Kernersville", category: "Commercial", region: "Triad", image: `${basePath}/images/gallery/classic-elegance.jpg` },
   { id: 11, title: "Cabin Retreat", location: "Banner Elk", category: "Residential", region: "Boone", image: `${basePath}/images/gallery/wrapped-trees.jpg` },
-  { id: 12, title: "Townhome Row", location: "Statesville", category: "Residential", region: "Lake Norman", image: `${basePath}/images/gallery/traditional-festive.jpg` },
+  { id: 12, title: "Townhome Row", location: "Statesville", category: "Residential", region: "Lake Norman", image: `${basePath}/images/gallery/townhome-row.jpg` },
 ];
 
 const filterTabs: FilterTab[] = ["All", "Residential", "Commercial", "Lake Norman", "Triad"];

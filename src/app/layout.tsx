@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://lights.go-forth.com"),
   title: "Go-Forth Christmas Lights | Professional Holiday Light Installation in NC",
   description:
-    "Professional Christmas light installation across Lake Norman, the Triad, Hickory, and Boone NC. Licensed, insured, and backed by 60+ years of trusted home service. Get your free quote today!",
+    "Professional Christmas light installation across Lake Norman, the Triad, Hickory, and Boone NC. Licensed, insured, and backed by 65+ years of trusted home service. Get your free quote today!",
   keywords: [
     "Christmas light installation",
     "holiday lights",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Go-Forth Christmas Lights | Professional Holiday Light Installation in NC",
     description:
-      "Professional Christmas light installation across North Carolina. Licensed, insured, and backed by 60+ years of trusted home service.",
+      "Professional Christmas light installation across North Carolina. Licensed, insured, and backed by 65+ years of trusted home service.",
     type: "website",
     locale: "en_US",
     images: [
@@ -61,6 +61,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
       <head>
+        <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta httpEquiv="Pragma" content="no-cache" />
+        <meta httpEquiv="Expires" content="0" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -85,11 +88,23 @@ export default function RootLayout({
                 { "@type": "City", name: "Mooresville" },
                 { "@type": "City", name: "Cornelius" },
                 { "@type": "City", name: "Davidson" },
+                { "@type": "City", name: "Huntersville" },
+                { "@type": "City", name: "Denver" },
+                { "@type": "City", name: "Statesville" },
                 { "@type": "City", name: "Greensboro" },
                 { "@type": "City", name: "Winston-Salem" },
                 { "@type": "City", name: "High Point" },
+                { "@type": "City", name: "Kernersville" },
+                { "@type": "City", name: "Burlington" },
+                { "@type": "City", name: "Clemmons" },
                 { "@type": "City", name: "Hickory" },
+                { "@type": "City", name: "Morganton" },
+                { "@type": "City", name: "Lenoir" },
+                { "@type": "City", name: "Newton" },
                 { "@type": "City", name: "Boone" },
+                { "@type": "City", name: "Blowing Rock" },
+                { "@type": "City", name: "Banner Elk" },
+                { "@type": "City", name: "Wilkesboro" },
               ],
               hasOfferCatalog: {
                 "@type": "OfferCatalog",

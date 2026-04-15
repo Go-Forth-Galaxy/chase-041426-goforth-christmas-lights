@@ -173,7 +173,7 @@ export default function AboutPage() {
             <p>
               Today, Go-Forth has{" "}
               <strong className="text-gf-charcoal">200+ employees</strong> and{" "}
-              <strong className="text-gf-charcoal">20+ locations</strong> across
+              <strong className="text-gf-charcoal">23+ locations</strong> across
               North Carolina, South Carolina, Virginia, and beyond &mdash;
               still guided by the values Frank and Johnie built the company on
               more than six decades ago.
