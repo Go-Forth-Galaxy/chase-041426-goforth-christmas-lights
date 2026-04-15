@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import Image from "next/image";
-import basePath from "@/lib/basePath";
+import basePath, { img } from "@/lib/basePath";
 
 export default function BeforeAfterSlider() {
   const [position, setPosition] = useState(50);
@@ -35,7 +35,7 @@ export default function BeforeAfterSlider() {
       {/* "After" layer (full width, underneath) - nighttime with glowing lights */}
       <div className="absolute inset-0">
         <Image
-          src={`${basePath}/images/after-house.jpg`}
+          src={img("/images/after-house.jpg")}
           alt="House with professional Christmas light installation at night"
           fill
           sizes="(max-width: 768px) 100vw, 800px"
@@ -53,7 +53,7 @@ export default function BeforeAfterSlider() {
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
       >
         <Image
-          src={`${basePath}/images/before-house.jpg`}
+          src={img("/images/before-house.jpg")}
           alt="House during daytime without Christmas decorations"
           fill
           sizes="(max-width: 768px) 100vw, 800px"

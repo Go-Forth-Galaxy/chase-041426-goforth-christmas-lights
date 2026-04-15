@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import basePath from "@/lib/basePath";
+import basePath, { img } from "@/lib/basePath";
 import TestimonialCard from "@/components/TestimonialCard";
 import CTABanner from "@/components/CTABanner";
 
@@ -184,7 +184,7 @@ export default function AboutPage() {
           {/* Team photo */}
           <div className="relative hidden lg:block w-72 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg">
             <Image
-              src={`${basePath}/images/about/team.jpg`}
+              src={img("/images/about/team.jpg")}
               alt="The Go-Forth Christmas Lights team"
               width={288}
               height={384}
@@ -196,7 +196,7 @@ export default function AboutPage() {
           {/* Team photo (mobile) */}
           <div className="relative mt-10 lg:hidden overflow-hidden rounded-2xl shadow-lg">
             <Image
-              src={`${basePath}/images/about/team.jpg`}
+              src={img("/images/about/team.jpg")}
               alt="The Go-Forth Christmas Lights team"
               width={800}
               height={500}
@@ -270,7 +270,7 @@ export default function AboutPage() {
           {/* Installation photo */}
           <div className="relative mt-10 overflow-hidden rounded-2xl shadow-lg">
             <Image
-              src={`${basePath}/images/about/installation.jpg`}
+              src={img("/images/about/installation.jpg")}
               alt="Go-Forth crew installing Christmas lights on a home"
               width={800}
               height={450}

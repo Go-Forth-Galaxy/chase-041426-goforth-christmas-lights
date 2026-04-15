@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import basePath from "@/lib/basePath";
+import basePath, { img } from "@/lib/basePath";
 
 function BackToTop() {
   return (
@@ -38,7 +38,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="inline-flex items-center gap-2 group">
               <Image
-                src={`${basePath}/images/logo-light.png`}
+                src={img("/images/logo-light.png")}
                 alt="Go-Forth Home Services"
                 width={140}
                 height={42}
