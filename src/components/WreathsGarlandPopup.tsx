@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-export default function InflatablesPopup() {
+export default function WreathsGarlandPopup() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const dismissed = sessionStorage.getItem("inflatables-popup-dismissed");
+    const dismissed = sessionStorage.getItem("wreaths-popup-dismissed");
     if (dismissed) return;
 
     const timer = setTimeout(() => setVisible(true), 3000);
@@ -16,7 +16,7 @@ export default function InflatablesPopup() {
 
   function dismiss() {
     setVisible(false);
-    sessionStorage.setItem("inflatables-popup-dismissed", "1");
+    sessionStorage.setItem("wreaths-popup-dismissed", "1");
   }
 
   if (!visible) return null;
@@ -54,31 +54,31 @@ export default function InflatablesPopup() {
           <div className="px-6 pt-6 pb-2 text-center">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-gf-red/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-gf-red">
               <span className="h-1.5 w-1.5 rounded-full bg-gf-red animate-pulse" />
-              New Service
+              Popular Add-On
             </span>
 
             <h2 className="mt-4 font-[family-name:var(--font-display)] text-2xl font-bold text-gf-charcoal sm:text-3xl">
-              Holiday Inflatables Are Here!
+              Professional Wreaths &amp; Garland
             </h2>
 
             <p className="mt-3 text-gf-gray leading-relaxed">
-              Professional inflatable installation — Santa, snow globes, archways and more.
-              Delivered, set up, and maintained all season.
+              Lush, full, and flawlessly installed. Add premium wreaths to your
+              windows and garland to your columns, railings, and entryways.
             </p>
 
             <p className="mt-3 text-sm font-semibold text-gf-gold">
-              Starting at just $299
+              Wreaths from $50 &middot; Garland from $5/ft
             </p>
           </div>
 
           {/* Actions */}
           <div className="px-6 pb-6 pt-4 flex flex-col gap-3">
             <Link
-              href="/services/inflatables"
+              href="/quote"
               onClick={dismiss}
               className="block w-full rounded-xl bg-gf-red px-6 py-3.5 text-center font-bold text-white shadow-md transition-all duration-300 hover:bg-gf-red-light hover:shadow-lg hover:-translate-y-0.5"
             >
-              See Inflatables
+              Add to My Quote
             </Link>
             <button
               type="button"

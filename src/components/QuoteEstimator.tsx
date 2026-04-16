@@ -24,8 +24,6 @@ interface FormData {
   walkway: boolean;
   wreaths: boolean;
   wreathCount: number;
-  inflatables: boolean;
-  inflatableCount: number;
   lightColor: LightColor | "";
   designLevel: DesignLevel | "";
   name: string;
@@ -49,8 +47,6 @@ const initialFormData: FormData = {
   walkway: false,
   wreaths: false,
   wreathCount: 1,
-  inflatables: false,
-  inflatableCount: 1,
   lightColor: "",
   designLevel: "",
   name: "",
@@ -80,8 +76,6 @@ function calculateEstimate(data: FormData): { low: number; high: number } {
   if (data.bushes) { low += 150; high += 300; }
   if (data.walkway) { low += 200; high += 400; }
   if (data.wreaths) { low += data.wreathCount * 50; high += data.wreathCount * 50; }
-  if (data.inflatables) { low += data.inflatableCount * 200; high += data.inflatableCount * 350; }
-
   if (data.designLevel === "full") {
     low = Math.round(low * 1.15);
     high = Math.round(high * 1.15);
@@ -462,41 +456,6 @@ function Step2({
           )}
         </label>
 
-        {/* Inflatables with count */}
-        <label
-          className={`group relative flex cursor-pointer items-center gap-3 rounded-xl border-2 p-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 ${
-            data.inflatables
-              ? "border-gf-gold bg-gradient-to-r from-gf-warm-white to-white shadow-md"
-              : "border-gray-200 bg-white hover:border-gf-gold/40"
-          }`}
-        >
-          {data.inflatables && (
-            <span className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-gf-gold text-white shadow-sm">
-              <CheckIcon className="h-3 w-3" />
-            </span>
-          )}
-          <input
-            type="checkbox"
-            checked={data.inflatables}
-            onChange={(e) => onChange({ inflatables: e.target.checked })}
-            className="sr-only"
-            aria-label="Inflatables"
-          />
-          <span className="text-xl transition-transform duration-200 group-hover:scale-110" aria-hidden="true">🎈</span>
-          <span className="font-semibold text-gf-charcoal">Inflatables</span>
-          {data.inflatables && (
-            <select
-              value={data.inflatableCount}
-              onChange={(e) => onChange({ inflatableCount: Number(e.target.value) })}
-              className="ml-auto rounded-lg border border-gf-gold/30 bg-white px-2 py-1 text-sm font-medium text-gf-charcoal focus:border-gf-gold focus:ring-1 focus:ring-gf-gold/20 focus:outline-none"
-              aria-label="Number of inflatables"
-            >
-              {[1, 2, 3, 4, 5, 6].map((n) => (
-                <option key={n} value={n}>{n} inflatable{n > 1 ? "s" : ""}</option>
-              ))}
-            </select>
-          )}
-        </label>
       </div>
     </fieldset>
   );

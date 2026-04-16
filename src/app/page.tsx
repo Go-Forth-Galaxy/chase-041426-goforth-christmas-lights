@@ -5,7 +5,7 @@ import AvailabilityBadge from "@/components/AvailabilityBadge";
 import ServiceAreaCard from "@/components/ServiceAreaCard";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import CTABanner from "@/components/CTABanner";
-import InflatablesPopup from "@/components/InflatablesPopup";
+import WreathsGarlandPopup from "@/components/WreathsGarlandPopup";
 
 const serviceAreas = [
   {
@@ -113,7 +113,7 @@ const howItWorksSteps = [
 export default function Home() {
   return (
     <>
-      <InflatablesPopup />
+      <WreathsGarlandPopup />
 
       {/* ── Hero Section ── */}
       <section
@@ -580,44 +580,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Inflatables Banner ── */}
-      <section aria-labelledby="inflatables-banner" className="py-16 bg-white relative overflow-hidden">
+      {/* ── Wreaths & Garland Banner ── */}
+      <section aria-labelledby="wreaths-banner" className="py-16 bg-white relative overflow-hidden">
         <div className="relative max-w-5xl mx-auto px-6">
           <div className="rounded-2xl border-2 border-gf-gold/20 bg-gradient-to-r from-gf-warm-white via-white to-gf-warm-white p-8 sm:p-12 flex flex-col md:flex-row items-center gap-8">
             <div className="flex-1 text-center md:text-left">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-gf-red/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-gf-red mb-3">
                 <span className="h-1.5 w-1.5 rounded-full bg-gf-red animate-pulse" />
-                New Service
+                Popular Add-On
               </span>
               <h2
-                id="inflatables-banner"
+                id="wreaths-banner"
                 className="text-2xl sm:text-3xl font-bold text-gf-charcoal font-[family-name:var(--font-display)]"
               >
-                Holiday Inflatables
+                Professional Wreaths &amp; Garland
               </h2>
               <p className="mt-3 text-gf-gray leading-relaxed max-w-lg">
-                Santa, snow globes, archways and more — professionally installed and maintained all
-                season. Starting at just $299 — fully installed and maintained.
+                Complete the look with lush, full wreaths on every window and garland draped along
+                columns, railings, and entryways. Professionally installed and maintained all season.
               </p>
               <Link
-                href="/services/inflatables"
+                href="/quote"
                 className="mt-5 inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg bg-gf-red text-white shadow-md hover:bg-gf-red-light hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
               >
-                Learn More
+                Add to My Quote
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                 </svg>
               </Link>
             </div>
             <div className="flex-shrink-0">
-              <div className="relative w-36 h-36 rounded-2xl overflow-hidden shadow-lg">
-                <Image
-                  src={img("/images/inflatables/santa.jpg")}
-                  alt="Holiday inflatable Santa Claus"
-                  fill
-                  sizes="144px"
-                  className="object-cover"
-                />
+              <div className="relative w-36 h-36 rounded-2xl overflow-hidden shadow-lg flex items-center justify-center bg-gf-cream">
+                <span className="text-7xl" aria-hidden="true">🎄</span>
               </div>
             </div>
           </div>

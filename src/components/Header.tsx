@@ -7,7 +7,6 @@ import basePath, { img } from "@/lib/basePath";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/services/inflatables", label: "Inflatables" },
   { href: "/service-areas", label: "Service Areas" },
   { href: "/gallery", label: "Gallery" },
   { href: "/pricing", label: "Pricing" },

@@ -87,7 +87,6 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm">
               {[
                 ["/quote", "Get a Free Quote"],
-                ["/services/inflatables", "Holiday Inflatables"],
                 ["/gallery", "Photo Gallery"],
                 ["/pricing", "Pricing"],
                 ["/about", "About Us"],
